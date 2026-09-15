@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: false;
+}
+@plugin "daisyui/theme" {
+  name: "intheopen";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #f7f3e8;
+  --color-base-200: #efe8d8;
+  --color-base-300: #dcd2bd;
+  --color-base-content: #133b2e;
+  --color-primary: #2fa36b;
+  --color-primary-content: #071f17;
+  --color-secondary: #e66a4c;
+  --color-secondary-content: #2b100a;
+  --color-accent: #8ebced;
+  --color-accent-content: #10263c;
+  --color-neutral: #133b2e;
+  --color-neutral-content: #f7f2e7;
+  --color-info: #8ebced;
+  --color-info-content: #10263c;
+  --color-success: #2fa36b;
+  --color-success-content: #071f17;
+  --color-warning: #e5ae49;
+  --color-warning-content: #2d2007;
+  --color-error: #e66a4c;
+  --color-error-content: #2b100a;
+  --radius-selector: 0;
+  --radius-field: 0;
+  --radius-box: 0;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme inline {
+  --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-base-300);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-content);
+  }
+}
