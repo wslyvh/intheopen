@@ -8,7 +8,7 @@ const work = [
     label: "news",
     title: "monthly privacy brief",
     description: "Developments, wins, tools, resources, and events.",
-    href: site.links.editions,
+    href: site.links.newsletter,
     treatment: "before:bg-accent hover:bg-accent/15",
   },
   {

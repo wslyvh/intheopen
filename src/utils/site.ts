@@ -25,7 +25,6 @@ export const site = {
   links: {
     twitter: "https://x.com/intheopencc",
     newsletter: "https://newsletter.intheopen.cc/",
-    editions: "https://newsletter.intheopen.cc/archive",
     feed: "https://newsletter.intheopen.cc/feed",
     paperweight: "https://www.paperweight.email/",
   },
