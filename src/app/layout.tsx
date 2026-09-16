@@ -127,7 +127,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Script
           src={site.analytics.umami.script}
           data-website-id={site.analytics.umami.websiteId}
-          data-domains={site.domain}
+          data-domains={`www.${site.domain}`}
         />
         <JsonLd data={websiteJsonLd} />
       </head>
