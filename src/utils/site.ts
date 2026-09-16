@@ -13,6 +13,10 @@ export const site = {
   themeColor: "#f7f3e8",
   analytics: {
     plausibleScript: "https://plausible.io/js/pa-j1Z2uUIRXb2OPK2wn8v4i.js",
+    umami: {
+      script: "https://stats.westech.studio/script.js",
+      websiteId: "8b52c36d-a04d-485f-9568-b7f0f0916fca",
+    },
   },
   keywords: [
     "privacy",

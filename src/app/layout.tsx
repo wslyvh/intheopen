@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import PlausibleProvider from "next-plausible";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/footer";
@@ -123,6 +124,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <head>
         <PlausibleProvider src={site.analytics.plausibleScript} />
+        <Script
+          src={site.analytics.umami.script}
+          data-website-id={site.analytics.umami.websiteId}
+          data-domains={site.domain}
+        />
         <JsonLd data={websiteJsonLd} />
       </head>
       <body className="bg-base-100 text-base-content flex min-h-dvh flex-col antialiased">
