@@ -72,7 +72,7 @@ export default function OpenGraphImage() {
           style={{
             width: 430,
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-end",
             justifyContent: "center",
           }}
         >

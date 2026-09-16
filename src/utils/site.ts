@@ -32,6 +32,13 @@ export const site = {
     feed: "https://newsletter.intheopen.cc/feed",
     paperweight: "https://www.paperweight.email/",
   },
+  partners: [
+    {
+      name: "The Interfold",
+      href: "https://www.theinterfold.com/",
+      src: "/images/partners/interfold.png",
+    },
+  ],
 } as const;
 
 export type Site = typeof site;

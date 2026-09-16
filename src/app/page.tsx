@@ -30,7 +30,7 @@ const work = [
 export default function HomePage() {
   return (
     <section className="mx-auto grid w-full max-w-7xl flex-1 grid-rows-[minmax(0,1fr)_auto] px-5 pt-4 sm:px-8 sm:pt-6">
-      <div className="relative grid min-h-0 items-center gap-6 py-6 lg:grid-cols-[minmax(24rem,0.9fr)_minmax(28rem,1.1fr)] lg:gap-12 lg:py-2">
+      <div className="relative grid min-h-0 items-start gap-6 py-6 lg:grid-cols-[minmax(24rem,0.9fr)_minmax(28rem,1.1fr)] lg:items-stretch lg:gap-12 lg:py-2">
         <div
           className="pointer-events-none absolute inset-0 hidden font-mono font-bold sm:block"
           aria-hidden="true"
@@ -48,33 +48,62 @@ export default function HomePage() {
             +
           </span>
         </div>
-        <div className="relative z-10">
-          <h1>
-            <Image
-              src="/images/logo.png"
-              alt={site.name}
-              width={1000}
-              height={195}
-              className="h-auto w-full max-w-[29rem]"
-              priority
-            />
-          </h1>
-          <p className="text-base-content/70 mt-8 max-w-[31rem] text-xl leading-8 lg:whitespace-nowrap">
-            {site.tagline}
-          </p>
+        <div className="relative z-10 flex min-h-0 flex-col lg:h-full">
+          <div className="lg:flex lg:flex-1 lg:items-center">
+            <div>
+              <h1>
+                <Image
+                  src="/images/logo.png"
+                  alt={site.name}
+                  width={1000}
+                  height={195}
+                  className="h-auto w-full max-w-[29rem]"
+                  priority
+                />
+              </h1>
+              <p className="text-base-content/70 mt-8 max-w-[31rem] text-xl leading-8 lg:whitespace-nowrap">
+                {site.tagline}
+              </p>
+            </div>
+          </div>
+          <div className="mt-16 lg:mt-auto">
+            <h2 className="mb-6 font-mono text-xs font-bold lowercase">
+              partners
+            </h2>
+            <nav aria-label="Partners" className="flex items-center gap-8">
+              {site.partners.map((partner) => (
+                <a
+                  key={partner.name}
+                  href={partner.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={partner.name}
+                  className="focus-visible:outline-primary opacity-80 transition-opacity hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                  <Image
+                    src={partner.src}
+                    alt={partner.name}
+                    width={64}
+                    height={64}
+                    className="size-16"
+                  />
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
         <Image
           src="/images/hero.png"
           alt="A pixel-art scene of open technology, nature, and community"
           width={1208}
           height={593}
-          className="relative z-10 mx-auto h-auto max-h-[36svh] w-[92%] object-contain"
+          className="relative z-10 mx-auto h-auto max-h-[36svh] w-[92%] object-contain lg:self-end"
           priority
           sizes="(max-width: 1024px) 90vw, 58vw"
         />
       </div>
 
-      <div className="pb-2">
+      <div className="mt-16 pb-2 sm:mt-20">
         <h2 className="mb-3 font-mono text-xs font-bold lowercase">
           what we’re working on
         </h2>
