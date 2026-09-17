@@ -38,6 +38,11 @@ export const site = {
       href: "https://www.theinterfold.com/",
       src: "/images/partners/interfold.png",
     },
+    {
+      name: "Logos",
+      href: "https://logos.co/",
+      src: "/images/partners/logos.png",
+    },
   ],
 } as const;
 
