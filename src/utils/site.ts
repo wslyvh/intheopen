@@ -9,7 +9,7 @@ export const site = {
   locale: "en_US",
   language: "en",
   domain: "intheopen.cc",
-  url: "https://intheopen.cc",
+  url: "https://www.intheopen.cc",
   themeColor: "#f7f3e8",
   analytics: {
     plausibleScript: "https://plausible.io/js/pa-j1Z2uUIRXb2OPK2wn8v4i.js",
