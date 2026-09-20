@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
-import PlausibleProvider from "next-plausible";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
@@ -123,7 +122,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${satoshi.variable} ${jetBrainsMono.variable} scroll-smooth`}
     >
       <head>
-        <PlausibleProvider src={site.analytics.plausibleScript} />
         <Script
           src={site.analytics.umami.script}
           data-website-id={site.analytics.umami.websiteId}
