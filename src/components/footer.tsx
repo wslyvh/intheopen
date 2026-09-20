@@ -1,9 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
+import { outboundEvent } from "@/utils/analytics";
 import { site } from "@/utils/site";
 
 const footerLinks = [
-  { href: site.links.twitter, label: "twitter" },
-  { href: site.links.newsletter, label: "newsletter" },
+  { href: site.links.twitter, label: "twitter", target: "twitter" },
+  {
+    href: site.links.newsletter,
+    label: "newsletter",
+    target: "newsletter",
+  },
 ] as const;
 
 export function Footer() {
@@ -21,6 +26,10 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary focus-visible:outline-primary inline-flex items-center gap-1 font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+              {...outboundEvent({
+                target: link.target,
+                placement: "footer",
+              })}
             >
               {link.label}
               <ArrowUpRight className="size-3" aria-hidden="true" />

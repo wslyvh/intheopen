@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { outboundEvent } from "@/utils/analytics";
 import { site } from "@/utils/site";
 
 const work = [
@@ -9,6 +10,7 @@ const work = [
     title: "monthly privacy brief",
     description: "Developments, wins, tools, resources, and events.",
     href: site.links.newsletter,
+    target: "newsletter",
     treatment: "before:bg-accent hover:bg-accent/15",
   },
   {
@@ -16,6 +18,7 @@ const work = [
     title: "paperweight",
     description: "Local-first personal data analysis for your inbox.",
     href: site.links.paperweight,
+    target: "paperweight",
     treatment: "before:bg-primary hover:bg-primary/15",
   },
   {
@@ -79,6 +82,11 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   aria-label={partner.name}
                   className="focus-visible:outline-primary opacity-80 transition-opacity hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2"
+                  {...outboundEvent({
+                    target: "partner",
+                    placement: "partner_logo",
+                    label: partner.name,
+                  })}
                 >
                   <Image
                     src={partner.src}
@@ -109,7 +117,7 @@ export default function HomePage() {
         </h2>
         <div className="border-base-content/15 grid border sm:grid-cols-3">
           {work.map((item) => {
-            const external = item.href.startsWith("http");
+            const external = "target" in item;
             const content = (
               <>
                 <p className="text-primary font-mono text-xs font-bold lowercase">
@@ -140,6 +148,10 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={className}
+                {...outboundEvent({
+                  target: item.target,
+                  placement: "work_card",
+                })}
               >
                 {content}
               </a>

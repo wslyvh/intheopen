@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
+import { outboundEvent } from "@/utils/analytics";
 import { upcomingEvents } from "@/utils/events";
 import { site } from "@/utils/site";
 
@@ -72,6 +73,11 @@ export default function EventsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group border-base-content/15 hover:bg-primary/10 focus-visible:outline-primary grid gap-5 border-b py-6 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 sm:grid-cols-[11rem_1fr_auto] sm:items-center sm:px-4"
+                {...outboundEvent({
+                  target: "event",
+                  placement: "events_list",
+                  label: event.title,
+                })}
               >
                 <time
                   dateTime={event.date}
