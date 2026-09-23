@@ -30,6 +30,7 @@ export const site = {
     newsletter: "https://newsletter.intheopen.cc/",
     feed: "https://newsletter.intheopen.cc/feed",
     paperweight: "https://www.paperweight.email/",
+    magpii: "https://www.intheopen.cc/projects/magpii",
   },
   partners: [
     {

@@ -19,6 +19,13 @@ const work = [
     treatment: "before:bg-primary hover:bg-primary/15",
   },
   {
+    label: "projects",
+    title: "magpii",
+    description: "Keep personal data out of AI",
+    href: "/projects/magpii",
+    treatment: "before:bg-warning hover:bg-warning/15",
+  },
+  {
     label: "events",
     title: "upcoming calendar",
     description: "Privacy, digital rights, and open technology gatherings.",
@@ -107,7 +114,7 @@ export default function HomePage() {
         <h2 className="mb-3 font-mono text-xs font-bold lowercase">
           what we’re working on
         </h2>
-        <div className="border-base-content/15 grid border sm:grid-cols-3">
+        <div className="border-base-content/15 grid border sm:grid-cols-2">
           {work.map((item) => {
             const external = item.href.startsWith("http");
             const content = (
@@ -131,7 +138,7 @@ export default function HomePage() {
                 </div>
               </>
             );
-            const className = `group border-base-content/15 focus-visible:outline-primary relative border-b p-5 pt-6 transition-colors before:absolute before:inset-x-0 before:top-0 before:h-1 last:border-b-0 focus-visible:outline-2 focus-visible:outline-offset-2 sm:border-r sm:border-b-0 sm:last:border-r-0 ${item.treatment}`;
+            const className = `group border-base-content/15 focus-visible:outline-primary relative border-b p-5 pt-6 transition-colors before:absolute before:inset-x-0 before:top-0 before:h-1 last:border-b-0 focus-visible:outline-2 focus-visible:outline-offset-2 sm:odd:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 ${item.treatment}`;
 
             return external ? (
               <a
