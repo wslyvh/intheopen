@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/utils/site";
 
@@ -9,11 +10,17 @@ const footerLinks = [
 export function Footer() {
   return (
     <footer className="mt-auto">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-5 py-5 sm:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-4 px-5 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8">
         <p className="text-primary font-mono text-xs font-bold lowercase sm:text-sm">
           build / grow / connect
         </p>
-        <nav className="flex gap-5" aria-label="Social links">
+        <nav className="flex gap-5" aria-label="Footer links">
+          <Link
+            href="/about"
+            className="hover:text-primary focus-visible:outline-primary inline-flex items-center font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            about
+          </Link>
           {footerLinks.map((link) => (
             <a
               key={link.href}
