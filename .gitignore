@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Generated assets from the Magpii package
+/public/magpii/
+
 # dependencies
 /node_modules
 /.pnp
@@ -11,6 +14,8 @@
 !.yarn/versions
 
 # testing
+/test-results/
+/playwright-report/
 /coverage
 
 # next.js

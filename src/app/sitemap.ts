@@ -18,6 +18,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${site.url}/tools`,
+      lastModified: "2026-10-01",
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${site.url}/tools/text-redaction`,
+      lastModified: "2026-10-01",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${site.url}/events`,
       lastModified,
       changeFrequency: "weekly",

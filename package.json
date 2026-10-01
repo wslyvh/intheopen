@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test:e2e": "playwright test",
+    "predev": "magpii-assets --out public/magpii",
     "dev": "next dev",
+    "prebuild": "magpii-assets --out public/magpii",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -13,12 +16,14 @@
     "check": "npm run lint && npm run typecheck && npm run format:check"
   },
   "dependencies": {
+    "@intheopen/magpii": "file:vendor/intheopen-magpii-0.1.2.tgz",
     "lucide-react": "^1.46.0",
-    "next": "16.3.5",
+    "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^20",
@@ -26,7 +31,7 @@
     "@types/react-dom": "^19",
     "daisyui": "^5.7.38",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
+    "eslint-config-next": "16.3.8",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",

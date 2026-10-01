@@ -19,10 +19,10 @@ const work = [
     treatment: "before:bg-primary hover:bg-primary/15",
   },
   {
-    label: "projects",
-    title: "magpii",
-    description: "Keep personal data out of AI",
-    href: "/projects/magpii",
+    label: "tools",
+    title: "privacy tools",
+    description: "Simple privacy tools for your everyday digital life.",
+    href: "/tools",
     treatment: "before:bg-warning hover:bg-warning/15",
   },
   {

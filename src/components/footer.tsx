@@ -14,7 +14,16 @@ export function Footer() {
         <p className="text-primary font-mono text-xs font-bold lowercase sm:text-sm">
           build / grow / connect
         </p>
-        <nav className="flex gap-5" aria-label="Footer links">
+        <nav
+          className="flex flex-wrap gap-x-5 gap-y-3"
+          aria-label="Footer links"
+        >
+          <Link
+            href="/tools"
+            className="hover:text-primary focus-visible:outline-primary inline-flex items-center font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            tools
+          </Link>
           <Link
             href="/about"
             className="hover:text-primary focus-visible:outline-primary inline-flex items-center font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"

@@ -100,6 +100,27 @@ export default function MagpiiPage() {
             ))}
           </div>
         </div>
+        <section
+          aria-labelledby="credits-heading"
+          className="border-base-content/15 mt-14 max-w-3xl border-t pt-10"
+        >
+          <h2
+            id="credits-heading"
+            className="text-xl font-medium lowercase sm:text-2xl"
+          >
+            model &amp; software credits
+          </h2>
+          <p className="text-base-content/65 mt-6 text-lg leading-8">
+            Magpii uses Rampart by National Design Studio for local text
+            detection, licensed under CC BY 4.0, alongside open source software.
+          </p>
+          <a
+            href="/magpii/NOTICE.txt"
+            className="text-base-content/65 hover:text-primary focus-visible:outline-primary mt-4 inline-block text-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            Read the full credits and license notices
+          </a>
+        </section>
       </section>
     </>
   );
