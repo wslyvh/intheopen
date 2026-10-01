@@ -14,7 +14,7 @@ import {
 } from "@intheopen/magpii/browser";
 
 const example =
-  "Alex Morgan lives at 12 Oak Street in London. You can reach Alex at alex@example.com or +31 6 12345678. Their IBAN is NL91 ABNA 0417 1643 00. Please send the meeting notes by Friday.";
+  "Hello Alex Morgan, the invoice for 12 Oak Street, London is ready. Please transfer the amount to NL91 ABNA 0417 1643 00. We will send a copy to alex@example.com. Call +31 6 12345678 if you have any questions.";
 
 const labels: Record<DetectionType, string> = {
   PERSON: "Name",
