@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.beforeEach(async ({ page, context }) => {
   // Supply contextual detection through a worker fixture. Model assets are blocked.
   await context.route("**/magpii/**", async (route) => {
-    if (!route.request().url().endsWith("/worker.js")) return route.abort();
+    if (!route.request().url().endsWith("/worker-v2.js")) return route.abort();
     await route.fulfill({
       contentType: "text/javascript",
       body: `
@@ -12,6 +12,16 @@ test.beforeEach(async ({ page, context }) => {
             self.postMessage({ kind: "ready", id: data.id });
           } else if (data.text === "hold analysis") {
             self.blocked = true;
+          } else if (data.text.startsWith("Ada is 42 on")) {
+            self.postMessage({ kind: "result", id: data.id, detections: [
+              { start: 0, end: 3, type: "GIVEN_NAME", source: "model" },
+              { start: 7, end: 9, type: "AGE", source: "model" },
+              { start: 13, end: 23, type: "DATE", source: "model" },
+            ] });
+          } else if (data.text === "BSN 111222333") {
+            self.postMessage({ kind: "result", id: data.id, detections: [
+              { start: 4, end: 13, type: "GOVERNMENT_ID", source: "model" },
+            ] });
           } else {
             self.postMessage({ kind: "result", id: data.id, detections: [] });
           }
@@ -120,7 +130,54 @@ test("no-match feedback clears when the source changes", async ({ page }) => {
   await expect(status).toBeEmpty();
   await redact.click();
   await expect(output).toHaveValue("Email [EMAIL].");
-  await expect(status).toHaveText("1 identifiers found and redacted.");
+  await expect(status).toHaveText(
+    "1 identifiers found. 1 selected for redaction.",
+  );
+});
+
+test("optional entities start unchecked and can be selected independently", async ({
+  page,
+}) => {
+  await page
+    .getByLabel("your text", { exact: true })
+    .fill("Ada is 42 on 2026-10-05. https://example.com");
+  await page.getByRole("button", { name: "redact", exact: true }).click();
+  const output = page.getByLabel("redacted text", { exact: true });
+  await expect(output).toHaveValue(
+    "[GIVEN_NAME] is 42 on 2026-10-05. https://example.com",
+  );
+  await expect(
+    page.getByRole("checkbox", { name: "Given name Ada" }),
+  ).toBeChecked();
+  await expect(
+    page.getByRole("checkbox", { name: "Age 42" }),
+  ).not.toBeChecked();
+  await expect(
+    page.getByRole("checkbox", { name: "URL https://example.com" }),
+  ).not.toBeChecked();
+  const date = page.getByRole("checkbox", { name: "Date 2026-10-05" });
+  await expect(date).not.toBeChecked();
+  await date.check();
+  await expect(output).toHaveValue(
+    "[GIVEN_NAME] is 42 on [DATE]. https://example.com",
+  );
+});
+
+test("overlapping candidates produce one review match for the default mask", async ({
+  page,
+}) => {
+  await page.getByLabel("your text", { exact: true }).fill("BSN 111222333");
+  await page.getByRole("button", { name: "redact", exact: true }).click();
+  const match = page.getByRole("checkbox", { name: "Dutch BSN 111222333" });
+  await expect(match).toBeChecked();
+  await expect(page.getByRole("checkbox")).toHaveCount(1);
+  await expect(page.getByLabel("redacted text", { exact: true })).toHaveValue(
+    "BSN [BSN]",
+  );
+  await match.uncheck();
+  await expect(page.getByLabel("redacted text", { exact: true })).toHaveValue(
+    "BSN 111222333",
+  );
 });
 
 test("manual edits survive until replacing them is explicitly confirmed", async ({

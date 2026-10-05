@@ -3,27 +3,39 @@
 import { useEffect, useRef, useState } from "react";
 import { LoaderCircle, ShieldCheck } from "lucide-react";
 import {
+  DEFAULT_REDACTION_TYPES,
   maskText,
+  mergeDetections,
   redactText,
   type Detection,
   type DetectionType,
 } from "@intheopen/magpii";
 import {
   createBrowserDetector,
-  type RampartClient,
+  type BrowserDetectorClient,
 } from "@intheopen/magpii/browser";
 
 const example =
   "Hello Alex Morgan, the invoice for 12 Oak Street, London is ready. Please transfer the amount to NL91 ABNA 0417 1643 00. We will send a copy to alex@example.com. Call +31 6 12345678 if you have any questions.";
 
 const labels: Record<DetectionType, string> = {
+  GIVEN_NAME: "Given name",
+  SURNAME: "Surname",
   PERSON: "Name",
+  STREET: "Street",
+  BUILDING_NUMBER: "Building number",
+  POSTAL_CODE: "Postal code",
+  CITY: "City",
   ADDRESS: "Address",
   EMAIL: "Email",
   PHONE: "Phone",
+  URL: "URL",
   BSN: "Dutch BSN",
   IBAN: "IBAN",
   CREDIT_CARD: "Payment card",
+  GOVERNMENT_ID: "Government ID",
+  DATE: "Date",
+  AGE: "Age",
 };
 
 const textareaClass =
@@ -41,7 +53,7 @@ export function TextRedactor() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [copied, setCopied] = useState(false);
-  const detector = useRef<RampartClient | null>(null);
+  const detector = useRef<BrowserDetectorClient | null>(null);
   const inputVersion = useRef(0);
   const outputVersion = useRef(0);
   const generatedOutput = useRef("");
@@ -130,12 +142,27 @@ export function TextRedactor() {
         return;
 
       setReviewInput(text);
-      setDetections(result.detections);
-      setSelected(result.detections.map(() => true));
+      // Review the default masking spans once, while retaining optional matches.
+      const reviewDetections = [
+        ...mergeDetections(
+          result.detections.filter((detection) =>
+            DEFAULT_REDACTION_TYPES.includes(detection.type),
+          ),
+          text.length,
+        ),
+        ...result.detections.filter(
+          (detection) => !DEFAULT_REDACTION_TYPES.includes(detection.type),
+        ),
+      ].sort((a, b) => a.start - b.start || a.end - b.end);
+      setDetections(reviewDetections);
+      const initialSelection = reviewDetections.map((detection) =>
+        DEFAULT_REDACTION_TYPES.includes(detection.type),
+      );
+      setSelected(initialSelection);
       generateOutput(result.redactedText);
       setMessage(
-        result.detections.length
-          ? `${result.detections.length} identifiers found and redacted.`
+        reviewDetections.length
+          ? `${reviewDetections.length} identifiers found. ${initialSelection.filter(Boolean).length} selected for redaction.`
           : "No supported identifiers found. Review your text before sharing.",
       );
     } catch {
@@ -252,7 +279,8 @@ export function TextRedactor() {
                 review identifiers · {detections.length} found
               </legend>
               <p className="text-base-content/55 mb-4 text-sm leading-6">
-                Uncheck a match to keep it. You can also edit the result below.
+                Choose which matches to redact. Dates, ages, and URLs start
+                unchecked. You can also edit the result below.
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {detections.map((detection, index) => (
