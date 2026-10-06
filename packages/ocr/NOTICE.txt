@@ -1,0 +1,18 @@
+This tool uses third-party OCR assets:
+
+PaddleOCR.js 0.4.2 and PP-OCRv6 Tiny (Apache-2.0)
+https://github.com/PaddlePaddle/PaddleOCR/tree/main/paddleocr-js
+https://huggingface.co/PaddlePaddle
+The SDK is bundled for hosting; its prebuilt worker is unmodified.
+ONNX weights and inference configuration are unmodified and repackaged in ustar.
+Pinned source revisions and checksums: data/paddle/models.json.
+See data/paddle/LICENSE.txt or PaddleOCR-LICENSE.txt in prepared browser assets.
+
+ONNX Runtime Web 1.24.3 (MIT)
+https://github.com/microsoft/onnxruntime
+See data/paddle/ORT-LICENSE.txt and ORT-NOTICES.txt.
+
+OpenCV.js, js-yaml, clipper-lib and their dependencies are included in the
+bundled Paddle runtime. See opencv-LICENSE.txt, yaml-LICENSE.txt,
+clipper-LICENSE.txt, embedded notices in the worker,
+and ORT-NOTICES.txt in prepared browser assets.

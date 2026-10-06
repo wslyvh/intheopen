@@ -24,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${site.url}/tools/image-to-text`,
+      lastModified: "2026-10-06",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${site.url}/tools/text-redaction`,
       lastModified: "2026-10-01",
       changeFrequency: "monthly",

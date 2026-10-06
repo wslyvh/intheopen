@@ -1,0 +1,36 @@
+{
+  "name": "@intheopen/ocr",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "ocr-assets": "./dist/assets.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "NOTICE.txt"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@paddleocr/paddleocr-js": "0.4.2",
+    "esbuild": "0.28.2",
+    "onnxruntime-web": "1.24.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

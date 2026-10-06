@@ -3,6 +3,8 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   FileMinus2,
+  Link2,
+  ScanText,
   ScanFace,
   TextCursorInput,
 } from "lucide-react";
@@ -12,7 +14,7 @@ import { privacyTools } from "@/utils/tools";
 
 const title = "Privacy tools";
 const description =
-  "Simple privacy tools to redact sensitive information from your everyday digital life.";
+  "Simple tools to work with your files and protect personal information, locally on your device.";
 
 export const metadata: Metadata = {
   title,
@@ -38,8 +40,10 @@ export const metadata: Metadata = {
 
 const icons = {
   "text-redaction": TextCursorInput,
+  "image-to-text": ScanText,
   "image-redaction": ScanFace,
   "metadata-removal": FileMinus2,
+  "url-cleaner": Link2,
 };
 
 export default function ToolsPage() {

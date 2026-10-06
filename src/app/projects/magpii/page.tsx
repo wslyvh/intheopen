@@ -111,7 +111,8 @@ export default function MagpiiPage() {
             model &amp; software credits
           </h2>
           <p className="text-base-content/65 mt-6 text-lg leading-8">
-            Magpii uses Masker Mini by Divergent Labs for local text detection,
+            Magpii uses Masker Mini and an experimental browser export of Masker
+            Full for local text detection. Both models are by Divergent Labs and
             licensed under Apache 2.0, alongside open source software.
           </p>
           <a

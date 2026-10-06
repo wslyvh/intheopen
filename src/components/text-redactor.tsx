@@ -1,19 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { ImageInput } from "@/components/image-input";
+import { useOcr } from "@/hooks/use-ocr";
+import { useTextRedaction } from "@/hooks/use-text-redaction";
 import { LoaderCircle, ShieldCheck } from "lucide-react";
-import {
-  DEFAULT_REDACTION_TYPES,
-  maskText,
-  mergeDetections,
-  redactText,
-  type Detection,
-  type DetectionType,
-} from "@intheopen/magpii";
-import {
-  createBrowserDetector,
-  type BrowserDetectorClient,
-} from "@intheopen/magpii/browser";
+import type { DetectionType } from "@intheopen/magpii";
+import { FULL_MODEL_DOWNLOAD_BYTES } from "@intheopen/magpii/browser";
 
 const example =
   "Hello Alex Morgan, the invoice for 12 Oak Street, London is ready. Please transfer the amount to NL91 ABNA 0417 1643 00. We will send a copy to alex@example.com. Call +31 6 12345678 if you have any questions.";
@@ -44,186 +36,103 @@ const buttonClass =
   "focus-visible:outline-primary inline-flex min-h-11 items-center justify-center gap-2 px-5 py-3 font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-40";
 
 export function TextRedactor() {
-  const [input, setInput] = useState("");
-  const [reviewInput, setReviewInput] = useState("");
-  const [output, setOutput] = useState("");
-  const [detections, setDetections] = useState<Detection[] | null>(null);
-  const [selected, setSelected] = useState<boolean[]>([]);
-  const [phase, setPhase] = useState<"idle" | "loading" | "cleaning">("idle");
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
-  const [copied, setCopied] = useState(false);
-  const detector = useRef<BrowserDetectorClient | null>(null);
-  const inputVersion = useRef(0);
-  const outputVersion = useRef(0);
-  const generatedOutput = useRef("");
-  const job = useRef(0);
-  const busy = phase !== "idle";
-  const sourceChanged = detections !== null && input !== reviewInput;
-  const showSourceNote = sourceChanged && !busy;
-
-  useEffect(() => {
-    return () => {
-      job.current += 1;
-      outputVersion.current += 1;
-      detector.current?.dispose();
-      detector.current = null;
-    };
-  }, []);
-
-  function updateOutput(text: string) {
-    outputVersion.current += 1;
-    setOutput(text);
-    setCopied(false);
-    setMessage("");
-  }
-
-  function generateOutput(text: string) {
-    generatedOutput.current = text;
-    updateOutput(text);
-  }
-
-  function canRegenerateOutput() {
-    return (
-      output === generatedOutput.current ||
-      window.confirm(
-        "This will replace your edits to the redacted text. Continue?",
-      )
-    );
-  }
+  const redaction = useTextRedaction();
+  const ocr = useOcr(redaction.appendInput);
+  const {
+    model,
+    fullCached,
+    fullReady,
+    download,
+    downloading,
+    input,
+    output,
+    detections,
+    selected,
+    reviewInput,
+    sourceChanged,
+    modelChanged,
+    phase,
+    error,
+    message,
+    copied,
+  } = redaction;
+  const busy = redaction.busy || ocr.busy;
+  const showSourceNote = (sourceChanged || modelChanged) && !busy;
 
   function updateInput(text: string) {
-    inputVersion.current += 1;
-    if (busy) cancelRun();
-    setInput(text);
-    setError("");
-    setMessage("");
+    if (ocr.busy) ocr.cancel();
+    ocr.clearFeedback();
+    redaction.updateInput(text);
   }
 
-  function cancelRun() {
-    job.current += 1;
-    detector.current?.dispose();
-    detector.current = null;
-    setPhase("idle");
+  function cancel() {
+    if (ocr.busy) ocr.cancel();
+    redaction.cancel();
   }
 
   function clear() {
-    cancelRun();
-    inputVersion.current += 1;
-    setInput("");
-    setError("");
-    setReviewInput("");
-    generateOutput("");
-    setDetections(null);
-    setSelected([]);
+    ocr.clear();
+    redaction.clear();
   }
 
-  async function redact() {
-    if (busy || !input.trim()) return;
-    if (!canRegenerateOutput()) return;
-    const text = input;
-    const version = inputVersion.current;
-    const currentJob = ++job.current;
-    setError("");
-    setMessage("");
-    setPhase("loading");
-
-    try {
-      detector.current ??= createBrowserDetector({
-        assetBaseUrl: "/magpii/",
-      });
-      const currentDetector = detector.current;
-      await currentDetector.warmup();
-      if (job.current !== currentJob || inputVersion.current !== version)
-        return;
-      setPhase("cleaning");
-      const result = await redactText(text, { detector: currentDetector });
-      if (job.current !== currentJob || inputVersion.current !== version)
-        return;
-
-      setReviewInput(text);
-      // Review the default masking spans once, while retaining optional matches.
-      const reviewDetections = [
-        ...mergeDetections(
-          result.detections.filter((detection) =>
-            DEFAULT_REDACTION_TYPES.includes(detection.type),
-          ),
-          text.length,
-        ),
-        ...result.detections.filter(
-          (detection) => !DEFAULT_REDACTION_TYPES.includes(detection.type),
-        ),
-      ].sort((a, b) => a.start - b.start || a.end - b.end);
-      setDetections(reviewDetections);
-      const initialSelection = reviewDetections.map((detection) =>
-        DEFAULT_REDACTION_TYPES.includes(detection.type),
-      );
-      setSelected(initialSelection);
-      generateOutput(result.redactedText);
-      setMessage(
-        reviewDetections.length
-          ? `${reviewDetections.length} identifiers found. ${initialSelection.filter(Boolean).length} selected for redaction.`
-          : "No supported identifiers found. Review your text before sharing.",
-      );
-    } catch {
-      if (job.current !== currentJob) return;
-      detector.current?.dispose();
-      detector.current = null;
-      if (inputVersion.current === version) {
-        setError(
-          "The local detector could not finish. Check your connection while it loads, then try again. Your text has not been sent anywhere.",
-        );
-      }
-    } finally {
-      if (job.current === currentJob) setPhase("idle");
-    }
-  }
-
-  function toggleDetection(index: number) {
-    if (busy || !detections || !canRegenerateOutput()) return;
-    const next = selected.map((value, position) =>
-      position === index ? !value : value,
-    );
-    setSelected(next);
-    generateOutput(
-      maskText(
-        reviewInput,
-        detections.filter((_, position) => next[position]),
-      ),
-    );
-    setMessage(
-      `${next.filter(Boolean).length} identifiers selected for redaction.`,
-    );
-  }
-
-  async function copy() {
-    const version = outputVersion.current;
-    setError("");
-    try {
-      await navigator.clipboard.writeText(output);
-      if (outputVersion.current !== version) return;
-      setCopied(true);
-      setMessage("Redacted text copied.");
-    } catch {
-      if (outputVersion.current === version) {
-        setError(
-          "Could not copy automatically. Select the redacted text and copy it manually.",
-        );
-      }
-    }
+  function redact() {
+    if (busy) return;
+    ocr.clearFeedback();
+    void redaction.redact();
   }
 
   return (
     <div className="mt-12">
-      <div className="border-base-content/15 border">
-        <div className="border-base-content/15 border-b p-5 sm:p-6">
-          <div className="mb-4 flex min-h-5 flex-wrap items-center justify-between gap-3">
-            <label
-              htmlFor="source-text"
-              className="font-mono text-sm font-bold lowercase"
+      {redaction.fullModelEnabled && (
+        <div className="mb-5 flex flex-wrap items-center gap-3">
+          <label
+            htmlFor="redaction-model"
+            className="font-mono text-xs font-bold lowercase"
+          >
+            model
+          </label>
+          <select
+            id="redaction-model"
+            value={model}
+            onChange={(event) => {
+              if (ocr.busy) ocr.cancel();
+              redaction.selectModel(event.target.value as "mini" | "full");
+            }}
+            className="border-base-content/20 bg-base-100 focus-visible:outline-primary min-h-11 border px-3 font-mono text-xs"
+          >
+            <option value="mini">Mini · lightweight</option>
+            <option value="full">Full · experimental</option>
+          </select>
+          {model === "full" && (
+            <span className="text-base-content/55 text-xs leading-5">
+              {fullCached
+                ? "Full model saved in this browser."
+                : fullReady
+                  ? "Full model loaded for this session."
+                  : `Downloads about ${Math.round(FULL_MODEL_DOWNLOAD_BYTES / 1_000_000)} MB. Best suited to desktop browsers.`}
+            </span>
+          )}
+          {model === "full" && fullCached && (
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void redaction.removeDownload()}
+              className="focus-visible:outline-primary font-mono text-xs underline underline-offset-4 disabled:opacity-40"
             >
-              your text
-            </label>
+              remove download
+            </button>
+          )}
+        </div>
+      )}
+      <div className="border-base-content/15 border">
+        <ImageInput
+          id="redactor"
+          label="your text"
+          labelFor="source-text"
+          disabled={busy}
+          onFiles={ocr.read}
+          filename={ocr.filename}
+          actions={
             <button
               type="button"
               onClick={() => updateInput(example)}
@@ -232,7 +141,8 @@ export function TextRedactor() {
             >
               try an example
             </button>
-          </div>
+          }
+        >
           <textarea
             id="source-text"
             value={input}
@@ -242,7 +152,8 @@ export function TextRedactor() {
             autoCorrect="off"
             autoCapitalize="off"
             rows={5}
-            className={textareaClass}
+            disabled={ocr.busy}
+            className={`${textareaClass} disabled:bg-base-200/40`}
             placeholder="Paste text containing personal information…"
             aria-describedby="privacy-note"
           />
@@ -251,6 +162,7 @@ export function TextRedactor() {
               type="button"
               onClick={() => void redact()}
               disabled={busy || !input.trim()}
+              aria-busy={busy}
               className={`${buttonClass} bg-primary text-primary-content hover:bg-primary/85`}
             >
               {busy && (
@@ -259,18 +171,43 @@ export function TextRedactor() {
                   aria-hidden="true"
                 />
               )}
-              {busy ? "analyzing…" : "redact"}
+              {busy
+                ? "analysing…"
+                : model === "full" && !fullCached && !fullReady
+                  ? "download & redact"
+                  : "redact"}
             </button>
             <button
               type="button"
-              onClick={clear}
-              disabled={!input && detections === null && !busy}
+              onClick={busy ? cancel : clear}
+              disabled={
+                !input &&
+                detections === null &&
+                !busy &&
+                !ocr.filename &&
+                !ocr.error
+              }
               className={`${buttonClass} border-base-content/20 hover:bg-base-200 border`}
             >
-              clear
+              {busy ? "cancel" : "clear"}
             </button>
           </div>
-        </div>
+          {download && downloading && (
+            <div className="mt-4">
+              <progress
+                aria-label="Model download"
+                max={download.total}
+                value={download.loaded}
+                className="accent-primary h-1 w-full"
+              />
+              <p className="text-base-content/55 mt-1 text-xs">
+                {Math.round((100 * download.loaded) / download.total)}% ·{" "}
+                {Math.round(download.loaded / 1_000_000)} /{" "}
+                {Math.round(download.total / 1_000_000)} MB
+              </p>
+            </div>
+          )}
+        </ImageInput>
 
         {detections !== null && detections.length > 0 && (
           <div className="border-base-content/15 border-b p-5 sm:p-6">
@@ -279,8 +216,8 @@ export function TextRedactor() {
                 review identifiers · {detections.length} found
               </legend>
               <p className="text-base-content/55 mb-4 text-sm leading-6">
-                Choose which matches to redact. Dates, ages, and URLs start
-                unchecked. You can also edit the result below.
+                Choose which matches to redact. You can also edit the result
+                below.
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {detections.map((detection, index) => (
@@ -292,7 +229,7 @@ export function TextRedactor() {
                       type="checkbox"
                       checked={selected[index] ?? false}
                       disabled={busy}
-                      onChange={() => toggleDetection(index)}
+                      onChange={() => redaction.toggleDetection(index)}
                       className="accent-primary focus-visible:outline-primary mt-1 size-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2"
                     />
                     <span className="min-w-0">
@@ -323,14 +260,16 @@ export function TextRedactor() {
                 id="result-note"
                 className="text-base-content/55 text-xs leading-5"
               >
-                Source changed. Redact again to update this result.
+                {sourceChanged
+                  ? "Source changed. Redact again to update this result."
+                  : "Model changed. Redact again to update this result."}
               </p>
             )}
           </div>
           <textarea
             id="redacted-text"
             value={output}
-            onChange={(event) => updateOutput(event.target.value)}
+            onChange={(event) => redaction.updateOutput(event.target.value)}
             disabled={busy || detections === null}
             spellCheck={false}
             autoComplete="off"
@@ -345,9 +284,9 @@ export function TextRedactor() {
           />
           <button
             type="button"
-            onClick={() => void copy()}
+            onClick={() => void redaction.copy()}
             disabled={busy || detections === null || !output}
-            className={`${buttonClass} border-base-content/20 hover:bg-base-200 mt-5 border`}
+            className={`${buttonClass} bg-primary text-primary-content hover:bg-primary/85 mt-5`}
           >
             {copied ? "copied" : "copy"}
           </button>
@@ -369,16 +308,29 @@ export function TextRedactor() {
         role="status"
         aria-live="polite"
         className={
-          message && detections?.length === 0 && !sourceChanged && !busy
+          ocr.message ||
+          (message &&
+            detections?.length === 0 &&
+            !sourceChanged &&
+            !modelChanged &&
+            !busy)
             ? "text-base-content/65 mt-4 text-sm leading-6"
             : "sr-only"
         }
       >
-        {busy ? "Analyzing your text locally…" : message}
+        {ocr.busy
+          ? "Analysing image…"
+          : redaction.busy
+            ? phase === "loading"
+              ? downloading
+                ? "Downloading the model…"
+                : "Loading the model locally…"
+              : "Analysing your text locally…"
+            : ocr.message || message}
       </p>
-      {error && (
+      {!busy && (error || ocr.error) && (
         <p role="alert" className="text-error mt-3 text-sm leading-6">
-          {error}
+          {ocr.error || error}
         </p>
       )}
     </div>

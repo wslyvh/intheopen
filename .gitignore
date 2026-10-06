@@ -1,10 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Generated assets from the Magpii package
+# Generated package assets
 /public/magpii/
+/public/ocr/
+/packages/ocr/dist/
+/packages/ocr/test/.public/
+/packages/ocr/test-results/
+/packages/ocr/playwright-report/
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*

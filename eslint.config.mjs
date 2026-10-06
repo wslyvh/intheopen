@@ -8,6 +8,10 @@ const eslintConfig = defineConfig([
   // Override default ignores of eslint-config-next.
   globalIgnores([
     "public/magpii/**",
+    "public/ocr/**",
+    "packages/ocr/dist/**",
+    "packages/ocr/test/.public/**",
+    "packages/ocr/test-results/**",
     // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
