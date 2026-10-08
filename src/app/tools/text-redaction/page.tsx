@@ -19,7 +19,13 @@ export const metadata: Metadata = {
     description,
     url: "/tools/text-redaction",
     siteName: site.name,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/tools/text-redaction/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -27,7 +33,7 @@ export const metadata: Metadata = {
     creator: "@intheopencc",
     title: `${title} | ${site.name}`,
     description,
-    images: ["/opengraph-image"],
+    images: ["/tools/text-redaction/opengraph-image"],
   },
 };
 
