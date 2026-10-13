@@ -4,6 +4,7 @@
 /public/magpii/
 /public/ocr/
 /packages/ocr/dist/
+/packages/url-cleaner/dist/
 /packages/ocr/test/.public/
 /packages/ocr/test-results/
 /packages/ocr/playwright-report/

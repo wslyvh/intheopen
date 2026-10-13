@@ -1,0 +1,2 @@
+# Keep the bundled upstream catalog unchanged by formatting tools.
+src/rules.json
