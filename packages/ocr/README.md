@@ -21,4 +21,5 @@ Pass `{ assetBaseUrl }` to `createOcr()` to use another same-origin path.
 
 ## Notice
 
-- Uses [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache-2.0) and [ONNX Runtime](https://github.com/microsoft/onnxruntime) (MIT).
+- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache-2.0)
+- [ONNX Runtime](https://github.com/microsoft/onnxruntime) (MIT)
