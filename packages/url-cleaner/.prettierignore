@@ -1,2 +1,2 @@
 # Keep the bundled upstream catalog unchanged by formatting tools.
-packages/url-cleaner/src/rules.json
+src/rules.json

@@ -2,6 +2,7 @@
   "name": "@intheopen/url-cleaner",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": {
@@ -12,8 +13,7 @@
   "files": [
     "dist",
     "README.md",
-    "NOTICE.txt",
-    "LICENSE"
+    "licenses"
   ],
   "devDependencies": {
     "typescript": "^5"
@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepare": "npm run build",
-    "test": "npm run build && node --test test.mjs",
+    "test": "npm run build && node --test src/test/*.test.mjs",
     "update-rules": "node update-rules.mjs"
   }
 }

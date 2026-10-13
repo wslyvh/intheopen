@@ -13,8 +13,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "npm run build --prefix packages/url-cleaner && npm run build --prefix packages/ocr && next typegen && tsc --noEmit",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "prettier --write . --ignore-path .gitignore --ignore-path packages/url-cleaner/.prettierignore",
+    "format:check": "prettier --check . --ignore-path .gitignore --ignore-path packages/url-cleaner/.prettierignore",
     "check": "npm run lint && npm run typecheck && npm run format:check"
   },
   "dependencies": {

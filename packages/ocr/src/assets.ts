@@ -9,8 +9,10 @@ const require = createRequire(import.meta.url);
 const output = resolve(process.argv[2] ?? "public/ocr");
 await mkdir(output, { recursive: true });
 await writeFile(
-  join(output, "NOTICE.txt"),
-  await readFile(new URL("../NOTICE.txt", import.meta.url)),
+  join(output, "README.md"),
+  (await readFile(new URL("../README.md", import.meta.url), "utf8"))
+    .replaceAll("(data/paddle/", "(paddle/")
+    .replace("(paddle/LICENSE.txt)", "(paddle/PaddleOCR-LICENSE.txt)"),
 );
 
 const paddle = join(output, "paddle");
@@ -58,6 +60,10 @@ for (const part of ["det", "rec"]) {
     join(paddle, filename),
   );
 }
+await copyFile(
+  new URL("../data/paddle/models.json", import.meta.url),
+  join(paddle, "models.json"),
+);
 await copyFile(
   new URL("../data/paddle/LICENSE.txt", import.meta.url),
   join(paddle, "PaddleOCR-LICENSE.txt"),

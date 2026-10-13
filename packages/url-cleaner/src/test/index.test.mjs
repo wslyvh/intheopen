@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { cleanUrl } from "./dist/index.js";
+import { cleanUrl } from "../../dist/index.js";
 
 test("trims surrounding whitespace before cleaning HTTP links", () => {
   assert.equal(

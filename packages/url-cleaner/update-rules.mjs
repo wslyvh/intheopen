@@ -1,5 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 async function download(url) {
   const response = await fetch(url);
@@ -40,10 +39,18 @@ for (const provider of Object.values(providers)) {
 }
 await mkdir(new URL("./src/", import.meta.url), { recursive: true });
 await writeFile(new URL("./src/rules.json", import.meta.url), text);
-await writeFile(new URL("./LICENSE", import.meta.url), license);
+await mkdir(new URL("./licenses/", import.meta.url), { recursive: true });
 await writeFile(
-  new URL("./NOTICE.txt", import.meta.url),
-  `ClearURLs rules: https://github.com/ClearURLs/Rules\nRevision: ${revision}\nUpstream SHA-256: ${createHash("sha256").update(text).digest("hex")}\nRules licensed under LGPL-3.0; see LICENSE.\n`,
+  new URL("./licenses/ClearURLs-LGPL-3.0.txt", import.meta.url),
+  license,
+);
+const readme = new URL("./README.md", import.meta.url);
+await writeFile(
+  readme,
+  (await readFile(readme, "utf8")).replace(
+    /Rules\/blob\/[a-f0-9]{40}\/data\.min\.json/,
+    `Rules/blob/${revision}/data.min.json`,
+  ),
 );
 console.log(
   `Bundled ClearURLs rules at ${revision}. Run npm test before using them.`,
