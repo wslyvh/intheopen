@@ -11,17 +11,20 @@
     }
   },
   "files": [
-    "dist",
+    "dist/index.js",
+    "dist/index.d.ts",
+    "dist/rules.json",
     "README.md",
     "licenses"
   ],
   "devDependencies": {
+    "@types/node": "^20",
     "typescript": "^5"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepare": "npm run build",
-    "test": "npm run build && node --test src/test/*.test.mjs",
-    "update-rules": "node update-rules.mjs"
+    "test": "npm run build && node --test dist/test/*.test.js",
+    "update-rules": "npm run build && node dist/update-rules.js"
   }
 }

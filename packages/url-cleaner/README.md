@@ -1,6 +1,8 @@
 # URL cleaner
 
-Clean one HTTP(S) link with bundled ClearURLs rules. No runtime dependencies or network requests.
+Clean one HTTP(S) link locally. No runtime dependencies or network requests.
+
+Matches links against bundled ClearURLs rules and exceptions to remove tracking fields from query strings, URL fragments and paths. Redirect destinations embedded in a link can be extracted without opening or fetching it.
 
 ## Usage
 
@@ -9,12 +11,11 @@ import { cleanUrl } from "@intheopen/url-cleaner";
 
 cleanUrl("https://youtu.be/dQw4w9WgXcQ?si=shareIdentifier-123");
 // https://youtu.be/dQw4w9WgXcQ
-```
 
-Surrounding whitespace is trimmed. Untouched values keep their encoding.
-To retain referral attribution, pass `{ preserveReferrals: true }`.
+// Keep referral attribution while removing other tracking.
+cleanUrl(link, { allowReferrals: true });
+```
 
 ## Notice
 
-Bundled [ClearURLs rules](https://github.com/ClearURLs/Rules/blob/11086f40512774dcadef54079f1ba023bfacf940/data.min.json) retain their upstream LGPL-3.0 licence.
-Full [LGPL](licenses/ClearURLs-LGPL-3.0.txt) and [GPL](licenses/GPL-3.0.txt) terms are included; the rules are not MIT licensed.
+- Bundled [ClearURLs](https://www.clearurls.xyz/) rules ([LGPL-3.0](https://github.com/ClearURLs/Rules/blob/11086f40512774dcadef54079f1ba023bfacf940/LICENSE)).

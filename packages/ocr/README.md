@@ -21,7 +21,4 @@ Pass `{ assetBaseUrl }` to `createOcr()` to use another same-origin path.
 
 ## Notice
 
-PaddleOCR.js and PP-OCRv6 Tiny retain [Apache-2.0](data/paddle/LICENSE.txt); ONNX Runtime retains its [MIT licence](data/paddle/ORT-LICENSE.txt) and [upstream notices](data/paddle/ORT-NOTICES.txt).
-Pinned model sources and checksums are in [models.json](data/paddle/models.json).
-The Paddle worker and model assets are unmodified; weights and configuration are repackaged for browser hosting.
-Prepared browser assets include the upstream licences for PaddleOCR, ONNX Runtime, OpenCV, js-yaml and clipper-lib, plus notices embedded in the worker.
+- Uses [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache-2.0) and [ONNX Runtime](https://github.com/microsoft/onnxruntime) (MIT).

@@ -1,13 +1,14 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import type rules from "./rules.json";
 
-async function download(url) {
+async function download(url: string) {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`${response.status}: ${url}`);
   return response.text();
 }
 
 // Development-only: runtime cleaning never fetches rules.
-const revision =
+const revision: string =
   process.argv[2] ??
   JSON.parse(
     await download(
@@ -21,7 +22,7 @@ const [text, license] = await Promise.all([
   download(`${base}/data.min.json`),
   download(`${base}/LICENSE`),
 ]);
-const { providers } = JSON.parse(text);
+const { providers } = JSON.parse(text) as typeof rules;
 if (!providers || !Object.keys(providers).length)
   throw new Error("Missing providers.");
 for (const provider of Object.values(providers)) {
@@ -32,24 +33,22 @@ for (const provider of Object.values(providers)) {
     "rawRules",
     "redirections",
     "referralMarketing",
-  ]) {
+  ] as const) {
     if (!Array.isArray(provider[field])) throw new Error(`Missing ${field}.`);
     for (const pattern of provider[field]) new RegExp(pattern, "i");
   }
 }
-await mkdir(new URL("./src/", import.meta.url), { recursive: true });
-await writeFile(new URL("./src/rules.json", import.meta.url), text);
-await mkdir(new URL("./licenses/", import.meta.url), { recursive: true });
-await writeFile(
-  new URL("./licenses/ClearURLs-LGPL-3.0.txt", import.meta.url),
-  license,
-);
-const readme = new URL("./README.md", import.meta.url);
+const root = new URL("../", import.meta.url);
+await mkdir(new URL("src/", root), { recursive: true });
+await writeFile(new URL("src/rules.json", root), text);
+await mkdir(new URL("licenses/", root), { recursive: true });
+await writeFile(new URL("licenses/ClearURLs-LGPL-3.0.txt", root), license);
+const readme = new URL("README.md", root);
 await writeFile(
   readme,
   (await readFile(readme, "utf8")).replace(
-    /Rules\/blob\/[a-f0-9]{40}\/data\.min\.json/,
-    `Rules/blob/${revision}/data.min.json`,
+    /Rules\/blob\/[a-f0-9]{40}\/LICENSE/,
+    `Rules/blob/${revision}/LICENSE`,
   ),
 );
 console.log(

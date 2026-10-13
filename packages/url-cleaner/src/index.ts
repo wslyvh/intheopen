@@ -27,7 +27,7 @@ function removeFields(
   value: string,
   rules: RegExp[],
   referrals: RegExp[],
-  preserveReferrals: boolean,
+  allowReferrals: boolean,
 ): string {
   return value
     .split("&")
@@ -35,7 +35,7 @@ function removeFields(
       const key = decodeURIComponent(
         field.split("=", 1)[0].replace(/\+/g, " "),
       );
-      if (referrals.some((rule) => rule.test(key))) return preserveReferrals;
+      if (referrals.some((rule) => rule.test(key))) return allowReferrals;
       return !rules.some((rule) => rule.test(key));
     })
     .join("&");
@@ -44,7 +44,7 @@ function removeFields(
 function cleanProvider(
   url: string,
   provider: (typeof providers)[number],
-  preserveReferrals: boolean,
+  allowReferrals: boolean,
 ): string {
   for (const rule of provider.redirections) {
     const match = rule.exec(url);
@@ -67,13 +67,13 @@ function cleanProvider(
     originalFields,
     provider.rules,
     provider.referrals,
-    preserveReferrals,
+    allowReferrals,
   );
   const cleanedFragment = removeFields(
     fragment,
     provider.rules,
     provider.referrals,
-    preserveReferrals,
+    allowReferrals,
   );
   return (
     (query < 0
@@ -105,7 +105,7 @@ function isSigned(url: string): boolean {
 /** Trim surrounding whitespace and clean one HTTP(S) URL locally. */
 export function cleanUrl(
   input: string,
-  options: { preserveReferrals?: boolean } = {},
+  options: { allowReferrals?: boolean } = {},
 ): string {
   const trimmed = input.trim();
   if (!isUrl(trimmed)) return input;
@@ -125,7 +125,7 @@ export function cleanUrl(
         const cleaned = cleanProvider(
           url,
           provider,
-          options.preserveReferrals ?? false,
+          options.allowReferrals ?? false,
         );
         if (cleaned !== url && isSigned(cleaned)) return cleaned;
         url = cleaned;

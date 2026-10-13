@@ -10,9 +10,7 @@ const output = resolve(process.argv[2] ?? "public/ocr");
 await mkdir(output, { recursive: true });
 await writeFile(
   join(output, "README.md"),
-  (await readFile(new URL("../README.md", import.meta.url), "utf8"))
-    .replaceAll("(data/paddle/", "(paddle/")
-    .replace("(paddle/LICENSE.txt)", "(paddle/PaddleOCR-LICENSE.txt)"),
+  await readFile(new URL("../README.md", import.meta.url)),
 );
 
 const paddle = join(output, "paddle");
