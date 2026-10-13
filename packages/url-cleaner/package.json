@@ -1,0 +1,27 @@
+{
+  "name": "@intheopen/url-cleaner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "NOTICE.txt",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "test": "npm run build && node --test test.mjs",
+    "update-rules": "node update-rules.mjs"
+  }
+}

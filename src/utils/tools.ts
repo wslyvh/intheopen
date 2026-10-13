@@ -16,6 +16,14 @@ export const privacyTools = [
     status: "available",
   },
   {
+    id: "url-cleaner",
+    title: "URL cleaner",
+    description:
+      "Remove common tracking parameters from links before you share them.",
+    href: "/tools/url-cleaner",
+    status: "available",
+  },
+  {
     id: "image-redaction",
     title: "Image redaction",
     description:
@@ -27,13 +35,6 @@ export const privacyTools = [
     title: "Metadata removal",
     description:
       "Remove hidden location, device, and author information from files before you share them.",
-    status: "coming soon",
-  },
-  {
-    id: "url-cleaner",
-    title: "URL cleaner",
-    description:
-      "Remove common tracking parameters from links before you share them.",
     status: "coming soon",
   },
 ] as const;
