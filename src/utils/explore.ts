@@ -29,8 +29,6 @@ export interface Project {
   account_required: boolean | null;
   protection_level: ProtectionLevel;
   privacy: {
-    data_exposure: string[] | null;
-    protection: string[] | null;
     highlights: string[];
     notes: string;
   };

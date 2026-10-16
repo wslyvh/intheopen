@@ -19,22 +19,14 @@
     "account_required": false,
     "protection_level": "basic",
     "privacy": {
-      "data_exposure": ["content", "activity", "account", "network", "billing"],
-      "protection": [
-        "policy_commitments",
-        "transport_encryption",
-        "storage_encryption",
-        "end_to_end_encryption"
-      ],
       "highlights": [
-        "Brave's servers can read ordinary hosted requests, including messages, conversation context, and selected page or document content.",
-        "History stays on your device by default. Optional Sync stores an encrypted copy that only your devices can decrypt.",
-        "Brave says temporary request data is deleted after answering and chats are not used for training. Large requests can be kept for a few minutes.",
+        "The service can read messages, earlier messages and files included in a request.",
+        "History stays on your device by default. Optional sync stores an encrypted copy that the service cannot decrypt.",
+        "Brave says requests are deleted after processing and ordinary chats are not used for training. Large requests can be kept for a few minutes.",
         "Submitting feedback shares the full conversation with Brave, which keeps it for one year.",
-        "Premium uses separate tokens to confirm payment without attaching your payment details to each chat request.",
-        "Browser automation is in early testing."
+        "Premium confirms payment without attaching your payment details to each chat request."
       ],
-      "notes": "This rating covers hosted Leo, not a custom local-model setup. Earlier messages included in a request are readable during processing."
+      "notes": "This protection level covers the built-in hosted service, not a custom local-model setup. Requests can also include selected web-page content. Sync protects saved history, but earlier messages become readable when included in a request."
     },
     "research_notes": [
       "When Leo private inference expands beyond its announced experimental rollout, check supported models, client verification, search, and document uploads before changing the protection assessment.",
@@ -78,28 +70,14 @@
     "account_required": false,
     "protection_level": "basic",
     "privacy": {
-      "data_exposure": [
-        "content",
-        "activity",
-        "account",
-        "network",
-        "device",
-        "billing"
-      ],
-      "protection": [
-        "policy_commitments",
-        "transport_encryption",
-        "storage_encryption",
-        "end_to_end_encryption"
-      ],
       "highlights": [
+        "The service can read messages, earlier messages and files included in a request.",
         "Saved history is encrypted with keys that Proton does not have.",
-        "Messages, files, and any earlier messages included in a request are readable on Proton's model servers.",
-        "Proton says temporary requests are deleted after processing and ordinary chats are not used for training.",
-        "Web search sends a shortened request to search providers.",
-        "Submitting feedback shares an anonymized prompt and reply. Apertus feedback can also be used for training."
+        "Proton says requests are deleted after processing and ordinary chats are not used for training.",
+        "Web search sends a shortened version of your request to external search services.",
+        "Submitting feedback shares an anonymized prompt and reply. Feedback on Apertus can also be used for training."
       ],
-      "notes": "Turning off Web search stops requests to search partners. Proton's model servers still read messages and any earlier messages included as context when answering."
+      "notes": "Turning off Web search stops sharing with search services. It does not stop Lumo from reading messages when answering. Encryption protects saved history, but earlier messages become readable when included in a request."
     },
     "research_notes": [
       "When Proton's announced desktop Lumo app is released, check supported systems, local file access, and privacy settings before updating platforms or recommending it."
@@ -146,30 +124,15 @@
     "account_required": false,
     "protection_level": "basic",
     "privacy": {
-      "data_exposure": [
-        "content",
-        "activity",
-        "account",
-        "network",
-        "device",
-        "billing"
-      ],
-      "protection": [
-        "policy_commitments",
-        "transport_encryption",
-        "storage_encryption",
-        "end_to_end_encryption",
-        "confidential_compute"
-      ],
       "highlights": [
-        "Ordinary model providers can read messages and earlier messages included as context.",
-        "Select a model marked 'zero provider visibility' to hide content from its model host. DuckDuckGo still processes prompts for anonymous analysis.",
-        "Uploaded files and images go to an outside safety-check service, including with protected models.",
-        "History stays on your device by default. Optional Sync & Backup stores a copy that DuckDuckGo cannot decrypt.",
+        "Ordinary model providers can read messages and earlier messages included in a request.",
+        "Models marked “zero provider visibility” hide messages from the model provider. DuckDuckGo still processes readable prompts for anonymous analysis.",
+        "History stays on your device by default. Optional sync stores an encrypted copy that the service cannot decrypt.",
         "DuckDuckGo prohibits model training on chats. OpenAI and Anthropic can keep requests in memory for up to one hour.",
+        "Uploaded files and images are sent to an external safety-check service, even when using a protected model.",
         "Submitting feedback shares the conversation with DuckDuckGo for review."
       ],
-      "notes": "Anthropic can keep chats for legal or abuse checks. Files flagged as child sexual abuse material are kept and reported to authorities."
+      "notes": "Encrypted history is available through Sync & Backup. Anthropic can retain chats for legal or abuse checks. Files flagged as child sexual abuse material are kept and reported to authorities."
     },
     "research_notes": [],
     "sources": [
@@ -209,30 +172,14 @@
     "account_required": false,
     "protection_level": "enhanced",
     "privacy": {
-      "data_exposure": [
-        "content",
-        "activity",
-        "account",
-        "network",
-        "device",
-        "billing"
-      ],
-      "protection": [
-        "policy_commitments",
-        "transport_encryption",
-        "storage_encryption",
-        "end_to_end_encryption",
-        "confidential_compute"
-      ],
       "highlights": [
-        "Pro's E2EE (end-to-end encrypted) text mode hides messages from Venice and the model host.",
-        "Web search and memory are disabled in E2EE mode.",
+        "Pro’s end-to-end encrypted text mode prevents Venice and the model provider from reading messages. Web search and memory are disabled in this mode.",
         "The default Private mode processes readable messages under a promise not to keep them.",
-        "Anonymous models can read and keep messages. TEE models hide messages from the model host, but not from Venice.",
-        "History is local by default. Optional backups and shared chats are encrypted before upload.",
-        "Venice collects IP, device, and usage data. Its policy permits third-party tracking."
+        "History stays on your device by default. Optional backups and shared chats are encrypted before upload.",
+        "Anonymous models can read and keep messages. TEE models hide messages from the model provider, but Venice can still read them.",
+        "Venice collects IP addresses, device information and usage data. Its policy permits third-party tracking."
       ],
-      "notes": "For this protection, get Pro, click the model name in the prompt bar, and select an E2EE text model. Switching models keeps the conversation, so earlier messages can be sent to a less private model."
+      "notes": "To use the Enhanced protection, get Pro, click the model name in the prompt bar, and select an E2EE text model. Switching models keeps the conversation, so earlier messages can be sent to a model with less protection."
     },
     "research_notes": [],
     "sources": [
@@ -273,28 +220,13 @@
     "account_required": true,
     "protection_level": "enhanced",
     "privacy": {
-      "data_exposure": [
-        "content",
-        "activity",
-        "account",
-        "network",
-        "device",
-        "billing"
-      ],
-      "protection": [
-        "policy_commitments",
-        "transport_encryption",
-        "storage_encryption",
-        "end_to_end_encryption",
-        "confidential_compute"
-      ],
       "highlights": [
-        "Confer encrypts chats by default. Service operators cannot read ordinary messages during AI processing.",
-        "Saved history, memories, and attachments are encrypted with keys controlled by you.",
-        "Published web tools send readable search queries and page URLs to Tavily when used.",
-        "Chat encryption does not hide account and payment data from the services handling them."
+        "Chats are encrypted by default. The companies running the service cannot read ordinary messages during processing.",
+        "Saved history, memories and attachments are encrypted with keys controlled by you.",
+        "Web tools send readable search queries and page URLs to an external search service.",
+        "Chat encryption does not hide account or payment details from the companies handling them."
       ],
-      "notes": "The search code does not attach a separate copy of your chat history. Queries and URLs can still contain information from the conversation. Other connectors can send different request data."
+      "notes": "Web search does not send a separate copy of your chat history. Search queries and page URLs can still contain information from the conversation. Other connected services may receive different information."
     },
     "research_notes": [],
     "sources": [
