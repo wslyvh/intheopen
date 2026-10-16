@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SiteNavigation } from "@/components/site-navigation";
 import { site } from "@/utils/site";
 
 export function PageHeader() {
   return (
-    <header className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+    <header className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 sm:px-8">
       <Link
         href="/"
         className="focus-visible:outline-primary inline-flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-4"
@@ -18,6 +19,7 @@ export function PageHeader() {
           className="h-auto w-36"
         />
       </Link>
+      <SiteNavigation />
     </header>
   );
 }

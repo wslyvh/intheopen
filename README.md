@@ -19,6 +19,12 @@ npm run check
 npm run format
 ```
 
+## Explore
+
+`/explore/private-ai` lists reviewed AI assistants and how they handle privacy. `/explore` redirects there. Each project has a profile at `/explore/{id}`.
+
+The catalog is `data/private-ai.json`.
+
 ## Image to text
 
 `/tools/image-to-text` extracts editable, copyable text from a single PNG, JPEG,

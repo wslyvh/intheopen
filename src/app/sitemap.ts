@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/utils/site";
+import { loadCategories } from "@/utils/explore";
 
 const lastModified = "2026-09-23";
 
@@ -53,5 +54,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...loadCategories().flatMap((category) => [
+      {
+        url: `${site.url}/explore/${category.slug}`,
+        lastModified: category.projects
+          .map((project) => project.checked_at)
+          .sort()
+          .at(-1),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      },
+      ...category.projects.map((project) => ({
+        url: `${site.url}/explore/${project.id}`,
+        lastModified: project.checked_at,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
+    ]),
   ];
 }

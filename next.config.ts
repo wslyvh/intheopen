@@ -6,6 +6,20 @@ const hostedFullModelUrl =
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  outputFileTracingIncludes: {
+    "/explore/*": ["./data/*.json"],
+    "/explore/*/opengraph-image": ["./data/*.json"],
+    "/sitemap.xml": ["./data/*.json"],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/explore",
+        destination: "/explore/private-ai",
+        permanent: false,
+      },
+    ];
+  },
   env: {
     NEXT_PUBLIC_MAGPII_FULL_MODEL_URL:
       process.env.NEXT_PUBLIC_MAGPII_FULL_MODEL_URL ?? hostedFullModelUrl,
