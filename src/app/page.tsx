@@ -157,6 +157,13 @@ export default function HomePage() {
             );
           })}
         </div>
+        <Link
+          href="/explore/private-ai"
+          className="text-primary focus-visible:outline-primary mt-6 inline-flex items-center gap-2 font-mono text-sm font-bold underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
+          Explore private AI{" "}
+          <ArrowUpRight className="size-4" aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );

@@ -1,0 +1,321 @@
+[
+  {
+    "id": "brave-leo",
+    "name": "Brave Leo",
+    "description": "An AI assistant in Brave Browser that answers questions, summarizes pages and documents, and searches the web.",
+    "links": {
+      "website": "https://brave.com/leo/",
+      "github": "https://github.com/brave/brave-core",
+      "twitter": "https://x.com/brave",
+      "privacy_policy": "https://brave.com/privacy/browser/",
+      "terms": "https://brave.com/terms-of-use/"
+    },
+    "license": "MPL-2.0",
+    "operator": "Brave Software, Inc.",
+    "country": "United States",
+    "pricing": "freemium",
+    "features": ["chat", "documents", "search", "agents"],
+    "platforms": ["windows", "macos", "linux", "android", "ios"],
+    "account_required": false,
+    "protection_level": "basic",
+    "privacy": {
+      "data_exposure": ["content", "activity", "account", "network", "billing"],
+      "protection": [
+        "policy_commitments",
+        "transport_encryption",
+        "storage_encryption",
+        "end_to_end_encryption"
+      ],
+      "highlights": [
+        "Brave's servers can read ordinary hosted requests, including messages, conversation context, and selected page or document content.",
+        "History stays on your device by default. Optional Sync stores an encrypted copy that only your devices can decrypt.",
+        "Brave says temporary request data is deleted after answering and chats are not used for training. Large requests can be kept for a few minutes.",
+        "Submitting feedback shares the full conversation with Brave, which keeps it for one year.",
+        "Premium uses separate tokens to confirm payment without attaching your payment details to each chat request.",
+        "Browser automation is in early testing."
+      ],
+      "notes": "This rating covers hosted Leo, not a custom local-model setup. Earlier messages included in a request are readable during processing."
+    },
+    "research_notes": [
+      "When Leo private inference expands beyond its announced experimental rollout, check supported models, client verification, search, and document uploads before changing the protection assessment.",
+      "Recheck browser automation when it leaves experimental testing. Confirm supported platforms and safeguards before recommending it."
+    ],
+    "sources": [
+      "https://brave.com/leo/",
+      "https://brave.com/privacy/browser/",
+      "https://brave.com/terms-of-use/",
+      "https://support.brave.app/api/v2/help_center/en-us/articles/26727364100493.json",
+      "https://brave.com/blog/ai-browsing/",
+      "https://brave.com/blog/browser-ai-tee/",
+      "https://raw.githubusercontent.com/brave/brave-core/master/docs/premium_account_privacy.md",
+      "https://raw.githubusercontent.com/brave/brave-core/master/LICENSE",
+      "https://brave.com/blog/published-proxy-config/",
+      "https://raw.githubusercontent.com/brave/brave-core/master/components/ai_chat/core/browser/engine/conversation_api_client.cc",
+      "https://raw.githubusercontent.com/brave/brave-core/master/components/ai_chat/core/browser/engine/oblivious_http_api_client.cc",
+      "https://raw.githubusercontent.com/brave/brave-core/master/components/ai_chat/core/browser/utils.cc",
+      "https://profincognito.me/tools/ai/braveleo/"
+    ],
+    "checked_at": "2026-10-14",
+    "image": "/images/explore/brave-leo-6a7b2290.webp"
+  },
+  {
+    "id": "proton-lumo",
+    "name": "Proton Lumo",
+    "description": "An AI assistant from Proton that answers questions, reads documents, searches the web, and creates images.",
+    "links": {
+      "website": "https://proton.me/lumo",
+      "github": "https://github.com/ProtonMail/WebClients",
+      "twitter": "https://x.com/asklumo",
+      "privacy_policy": "https://proton.me/lumo/privacy-policy",
+      "terms": "https://proton.me/lumo/terms"
+    },
+    "license": "GPL-3.0",
+    "operator": "Proton AG",
+    "country": "Switzerland",
+    "pricing": "freemium",
+    "features": ["chat", "documents", "search", "images"],
+    "platforms": ["web", "android", "ios"],
+    "account_required": false,
+    "protection_level": "basic",
+    "privacy": {
+      "data_exposure": [
+        "content",
+        "activity",
+        "account",
+        "network",
+        "device",
+        "billing"
+      ],
+      "protection": [
+        "policy_commitments",
+        "transport_encryption",
+        "storage_encryption",
+        "end_to_end_encryption"
+      ],
+      "highlights": [
+        "Saved history is encrypted with keys that Proton does not have.",
+        "Messages, files, and any earlier messages included in a request are readable on Proton's model servers.",
+        "Proton says temporary requests are deleted after processing and ordinary chats are not used for training.",
+        "Web search sends a shortened request to search providers.",
+        "Submitting feedback shares an anonymized prompt and reply. Apertus feedback can also be used for training."
+      ],
+      "notes": "Turning off Web search stops requests to search partners. Proton's model servers still read messages and any earlier messages included as context when answering."
+    },
+    "research_notes": [
+      "When Proton's announced desktop Lumo app is released, check supported systems, local file access, and privacy settings before updating platforms or recommending it."
+    ],
+    "sources": [
+      "https://proton.me/lumo",
+      "https://proton.me/lumo/download",
+      "https://proton.me/lumo/pricing",
+      "https://proton.me/lumo/privacy-policy",
+      "https://proton.me/lumo/terms",
+      "https://proton.me/legal/privacy",
+      "https://proton.me/support/lumo-privacy",
+      "https://proton.me/blog/lumo-security-model",
+      "https://proton.me/blog/lumo-2",
+      "https://proton.me/support/apertus-lumo",
+      "https://raw.githubusercontent.com/ProtonMail/WebClients/main/applications/lumo/package.json",
+      "https://profincognito.me/tools/ai/proton-lumo/",
+      "https://privacytools.io/app/lumo",
+      "https://www.macrumors.com/2026/06/30/proton-lumo-version-2-new-features/",
+      "https://www.techradar.com/pro/lumo-ai-review",
+      "https://proton.me/blog/2026-spring-summer-roadmaps",
+      "https://apps.apple.com/us/app/lumo-ai-by-proton/id6746714949"
+    ],
+    "checked_at": "2026-10-14",
+    "image": "/images/explore/proton-lumo-583f034f.webp"
+  },
+  {
+    "id": "duck-ai",
+    "name": "Duck.ai",
+    "description": "An AI chat service from DuckDuckGo that lets you choose between models, read PDFs, and create images.",
+    "links": {
+      "website": "https://duck.ai/",
+      "github": null,
+      "twitter": "https://x.com/duckduckgo",
+      "privacy_policy": "https://duckduckgo.com/duckai/privacy-terms",
+      "terms": "https://duckduckgo.com/duckai/privacy-terms"
+    },
+    "license": null,
+    "operator": "Duck Duck Go, Inc.",
+    "country": "United States",
+    "pricing": "freemium",
+    "features": ["chat", "documents", "images"],
+    "platforms": ["web", "windows", "macos", "android", "ios"],
+    "account_required": false,
+    "protection_level": "basic",
+    "privacy": {
+      "data_exposure": [
+        "content",
+        "activity",
+        "account",
+        "network",
+        "device",
+        "billing"
+      ],
+      "protection": [
+        "policy_commitments",
+        "transport_encryption",
+        "storage_encryption",
+        "end_to_end_encryption",
+        "confidential_compute"
+      ],
+      "highlights": [
+        "Ordinary model providers can read messages and earlier messages included as context.",
+        "Select a model marked 'zero provider visibility' to hide content from its model host. DuckDuckGo still processes prompts for anonymous analysis.",
+        "Uploaded files and images go to an outside safety-check service, including with protected models.",
+        "History stays on your device by default. Optional Sync & Backup stores a copy that DuckDuckGo cannot decrypt.",
+        "DuckDuckGo prohibits model training on chats. OpenAI and Anthropic can keep requests in memory for up to one hour.",
+        "Submitting feedback shares the conversation with DuckDuckGo for review."
+      ],
+      "notes": "Anthropic can keep chats for legal or abuse checks. Files flagged as child sexual abuse material are kept and reported to authorities."
+    },
+    "research_notes": [],
+    "sources": [
+      "https://duckduckgo.com/duckduckgo-help-pages/duckai",
+      "https://duckduckgo.com/duckai/privacy-terms",
+      "https://duckduckgo.com/privacy",
+      "https://duckduckgo.com/duckduckgo-help-pages/duckai/ai-chat-privacy",
+      "https://duckduckgo.com/duckduckgo-help-pages/what-information-does-duckai-share-with-model-providers",
+      "https://duckduckgo.com/duckduckgo-help-pages/duckai/image-creation",
+      "https://duckduckgo.com/duckduckgo-help-pages/privacy-pro/duck-ai/does-duckai-support-file-uploads",
+      "https://duckduckgo.com/duckduckgo-help-pages/duckai/chat-models",
+      "https://duckduckgo.com/pro/privacy-terms/us",
+      "https://duckduckgo.com/duckduckgo-help-pages/sync-and-backup/sync-and-backup-privacy",
+      "https://privacytools.io/app/duck-ai",
+      "https://www.techradar.com/pro/duck-ai-review"
+    ],
+    "checked_at": "2026-10-14",
+    "image": "/images/explore/duck-ai-7f0ba876.webp"
+  },
+  {
+    "id": "venice",
+    "name": "Venice",
+    "description": "An AI assistant with several privacy modes for chat, documents, web search, images, and tasks with multiple steps.",
+    "links": {
+      "website": "https://venice.ai/",
+      "github": null,
+      "twitter": "https://x.com/AskVenice",
+      "privacy_policy": "https://venice.ai/legal/privacy-policy",
+      "terms": "https://venice.ai/legal/tos"
+    },
+    "license": null,
+    "operator": "Venice.ai",
+    "country": "United States",
+    "pricing": "freemium",
+    "features": ["chat", "documents", "search", "images", "agents"],
+    "platforms": ["web", "macos", "android", "ios"],
+    "account_required": false,
+    "protection_level": "enhanced",
+    "privacy": {
+      "data_exposure": [
+        "content",
+        "activity",
+        "account",
+        "network",
+        "device",
+        "billing"
+      ],
+      "protection": [
+        "policy_commitments",
+        "transport_encryption",
+        "storage_encryption",
+        "end_to_end_encryption",
+        "confidential_compute"
+      ],
+      "highlights": [
+        "Pro's E2EE (end-to-end encrypted) text mode hides messages from Venice and the model host.",
+        "Web search and memory are disabled in E2EE mode.",
+        "The default Private mode processes readable messages under a promise not to keep them.",
+        "Anonymous models can read and keep messages. TEE models hide messages from the model host, but not from Venice.",
+        "History is local by default. Optional backups and shared chats are encrypted before upload.",
+        "Venice collects IP, device, and usage data. Its policy permits third-party tracking."
+      ],
+      "notes": "For this protection, get Pro, click the model name in the prompt bar, and select an E2EE text model. Switching models keeps the conversation, so earlier messages can be sent to a less private model."
+    },
+    "research_notes": [],
+    "sources": [
+      "https://venice.ai/privacy",
+      "https://venice.ai/legal/privacy-policy",
+      "https://venice.ai/legal/tos",
+      "https://venice.ai/pricing",
+      "https://venice.ai/features",
+      "https://venice.ai/faqs",
+      "https://venice.ai/lp/download",
+      "https://docs.venice.ai/overview/privacy",
+      "https://docs.venice.ai/guides/features/tee-e2ee-models",
+      "https://apps.apple.com/us/app/venice-ai/id6742061900",
+      "https://play.google.com/store/apps/details?id=com.ai.venice&hl=en_US",
+      "https://diyai.io/ai-tools/productivity/reviews/venice-ai-review/",
+      "https://www.roborhythms.com/venice-ai-review/"
+    ],
+    "checked_at": "2026-10-14",
+    "image": "/images/explore/venice-7c38bdf4.webp"
+  },
+  {
+    "id": "confer",
+    "name": "Confer",
+    "description": "An encrypted AI assistant for conversations, documents, web search, and connected services.",
+    "links": {
+      "website": "https://confer.to/",
+      "github": "https://github.com/conferlabs",
+      "twitter": null,
+      "privacy_policy": "https://confer.to/privacy/index.html",
+      "terms": "https://confer.to/terms/index.html"
+    },
+    "license": null,
+    "operator": "Confer Enterprises, Inc",
+    "country": null,
+    "pricing": "freemium",
+    "features": ["chat", "documents", "search"],
+    "platforms": ["web", "ios", "macos"],
+    "account_required": true,
+    "protection_level": "enhanced",
+    "privacy": {
+      "data_exposure": [
+        "content",
+        "activity",
+        "account",
+        "network",
+        "device",
+        "billing"
+      ],
+      "protection": [
+        "policy_commitments",
+        "transport_encryption",
+        "storage_encryption",
+        "end_to_end_encryption",
+        "confidential_compute"
+      ],
+      "highlights": [
+        "Confer encrypts chats by default. Service operators cannot read ordinary messages during AI processing.",
+        "Saved history, memories, and attachments are encrypted with keys controlled by you.",
+        "Published web tools send readable search queries and page URLs to Tavily when used.",
+        "Chat encryption does not hide account and payment data from the services handling them."
+      ],
+      "notes": "The search code does not attach a separate copy of your chat history. Queries and URLs can still contain information from the conversation. Other connectors can send different request data."
+    },
+    "research_notes": [],
+    "sources": [
+      "https://confer.to/",
+      "https://confer.to/privacy/index.html",
+      "https://confer.to/terms/index.html",
+      "https://confer.to/blog/2025/12/passkey-encryption/",
+      "https://confer.to/blog/2026/01/private-inference/",
+      "https://confer.to/blog/2026/03/encrypted-meta/",
+      "https://apps.apple.com/us/app/confer-private-ai/id6760171224",
+      "https://github.com/ConferLabs/confer-image",
+      "https://github.com/ConferLabs/confer-proxy",
+      "https://github.com/ConferLabs/confer-worker-image",
+      "https://raw.githubusercontent.com/ConferLabs/confer-proxy/master/src/main/java/org/moxie/confer/proxy/services/TavilySearchService.java",
+      "https://raw.githubusercontent.com/ConferLabs/confer-proxy/master/src/main/java/org/moxie/confer/proxy/tools/web/WebSearchTool.java",
+      "https://raw.githubusercontent.com/ConferLabs/confer-proxy/master/src/main/java/org/moxie/confer/proxy/controllers/OpenAIWebsocketHandler.java",
+      "https://stripe.com/privacy",
+      "https://techcrunch.com/2026/01/18/moxie-marlinspike-has-a-privacy-conscious-alternative-to-chatgpt/",
+      "https://decrypt.co/359454/best-ai-tools-respect-privacy"
+    ],
+    "checked_at": "2026-10-14",
+    "image": "/images/explore/confer-d694735d.webp"
+  }
+]

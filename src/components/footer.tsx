@@ -25,6 +25,12 @@ export function Footer() {
             tools
           </Link>
           <Link
+            href="/explore/private-ai"
+            className="hover:text-primary focus-visible:outline-primary inline-flex items-center font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            private AI
+          </Link>
+          <Link
             href="/about"
             className="hover:text-primary focus-visible:outline-primary inline-flex items-center font-mono text-xs font-bold lowercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
           >
