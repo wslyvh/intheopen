@@ -28,8 +28,8 @@ export function ProtectionLegend() {
         ))}
       </div>
       <p className="text-base-content/75 mt-5 text-sm leading-6">
-        Levels apply to the strongest supported setup. Each profile explains how
-        to use it.
+        Protection levels can depend on settings or plans. Read the project's
+        privacy context to get the right level of protection.
       </p>
     </section>
   );

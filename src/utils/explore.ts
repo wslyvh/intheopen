@@ -5,6 +5,7 @@ import {
   protectionLevels,
   type ProtectionLevel,
 } from "@/utils/protection-levels";
+
 export { protectionLevels } from "@/utils/protection-levels";
 
 export interface Project {
@@ -40,36 +41,45 @@ export interface Project {
 
 const dataDirectory = join(process.cwd(), "data");
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-export const categories = readdirSync(dataDirectory)
-  .filter((file) => file.endsWith(".json"))
-  .sort()
-  .map((file) => {
-    const slug = basename(file, ".json");
-    const projects: Project[] = JSON.parse(
-      readFileSync(join(dataDirectory, file), "utf8"),
-    );
-    if (!slugPattern.test(slug) || !Array.isArray(projects)) {
-      throw new Error(`Invalid Explore category: ${file}`);
-    }
-    return { slug, projects };
-  });
 
-const usedSlugs = new Set(categories.map((category) => category.slug));
-for (const { projects } of categories) {
-  for (const project of projects) {
-    if (
-      typeof project.id !== "string" ||
-      !slugPattern.test(project.id) ||
-      usedSlugs.has(project.id) ||
-      !protectionLevels.some((level) => level.id === project.protection_level)
-    ) {
-      throw new Error(`Invalid or duplicate Explore project: ${project.id}`);
+export interface ExploreCategory {
+  slug: string;
+  projects: Project[];
+}
+
+export function loadCategories(): ExploreCategory[] {
+  const categories = readdirSync(dataDirectory)
+    .filter((file) => file.endsWith(".json"))
+    .sort()
+    .map((file) => {
+      const slug = basename(file, ".json");
+      const projects: Project[] = JSON.parse(
+        readFileSync(join(dataDirectory, file), "utf8"),
+      );
+      if (!slugPattern.test(slug) || !Array.isArray(projects)) {
+        throw new Error(`Invalid Explore category: ${file}`);
+      }
+      return { slug, projects };
+    });
+  const usedSlugs = new Set(categories.map((category) => category.slug));
+  for (const { projects } of categories) {
+    for (const project of projects) {
+      if (
+        typeof project.id !== "string" ||
+        !slugPattern.test(project.id) ||
+        usedSlugs.has(project.id) ||
+        !protectionLevels.some((level) => level.id === project.protection_level)
+      ) {
+        throw new Error(`Invalid or duplicate Explore project: ${project.id}`);
+      }
+      usedSlugs.add(project.id);
     }
-    usedSlugs.add(project.id);
   }
+  return categories;
 }
 
 export function getExploreEntry(slug: string) {
+  const categories = loadCategories();
   const category = categories.find((entry) => entry.slug === slug);
   if (category) return { category };
   for (const category of categories) {

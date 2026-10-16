@@ -8,7 +8,7 @@ import {
   ProjectProfile,
 } from "@/components/explore-projects";
 import {
-  categories,
+  loadCategories,
   categoryCopy,
   getExploreEntry,
   featureLabels,
@@ -19,7 +19,7 @@ import { site } from "@/utils/site";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return categories.flatMap((category) => [
+  return loadCategories().flatMap((category) => [
     { slug: category.slug },
     ...category.projects.map((project) => ({ slug: project.id })),
   ]);
@@ -111,7 +111,7 @@ export default async function ExplorePage({ params }: Props) {
             "@type": "ListItem",
             position: 1,
             name: "Explore",
-            item: `${site.url}/explore`,
+            item: `${site.url}/explore/${entry.category.slug}`,
           },
           ...(project
             ? [
@@ -178,12 +178,16 @@ export default async function ExplorePage({ params }: Props) {
         >
           <ol className="flex flex-wrap items-center gap-3">
             <li>
-              <Link
-                href="/explore"
-                className="text-base-content focus-visible:outline-primary hover:text-base-content/75 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
-              >
-                explore
-              </Link>
+              {entry.project ? (
+                <Link
+                  href={`/explore/${entry.category.slug}`}
+                  className="text-base-content focus-visible:outline-primary hover:text-base-content/75 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+                >
+                  explore
+                </Link>
+              ) : (
+                <span className="text-base-content/75">explore</span>
+              )}
             </li>
             <li aria-hidden="true" className="text-base-content/40">
               /

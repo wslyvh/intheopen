@@ -92,10 +92,12 @@ for (const entry of entries) {
       entry.id === "private-ai" ? "ItemList" : "SoftwareApplication",
     );
     if (entry.id !== "private-ai") {
+      const breadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
       await expect(
-        page
-          .getByRole("navigation", { name: "Breadcrumb" })
-          .getByRole("link", { name: "Private AI", exact: true }),
+        breadcrumb.getByRole("link", { name: "explore", exact: true }),
+      ).toHaveAttribute("href", "/explore/private-ai");
+      await expect(
+        breadcrumb.getByRole("link", { name: "Private AI", exact: true }),
       ).toHaveAttribute("href", "/explore/private-ai");
       expect(
         await page
@@ -140,6 +142,9 @@ for (const entry of entries) {
       await expect(
         page.locator('[aria-labelledby="project-alternatives"] a'),
       ).toHaveCount(projects.length - 1);
+      await expect(
+        page.locator('[aria-labelledby="project-alternatives"] .badge'),
+      ).toHaveCount(projects.length - 1);
       for (const alternative of projects.filter(
         (item) => item.id !== entry.id,
       )) {
@@ -161,7 +166,7 @@ for (const entry of entries) {
         await page
           .locator('[aria-labelledby="protection-legend"] h3')
           .allTextContents(),
-      ).toEqual(["Basic", "Enhanced", "High-risk"]);
+      ).toEqual(["Basic", "Enhanced", "Maximum"]);
     }
     if (entry.id === "private-ai") {
       const list = graph.find((node) => node["@type"] === "ItemList");

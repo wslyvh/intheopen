@@ -21,15 +21,9 @@ npm run format
 
 ## Explore
 
-`/explore/private-ai` lists the reviewed AI projects. `/explore` temporarily redirects there. Profiles use `/explore/{id}` and one shared template.
+`/explore/private-ai` lists reviewed AI assistants and how they handle privacy. `/explore` redirects there. Each project has a profile at `/explore/{id}`.
 
-Each root `data/*.json` file contains an array of project records. Its filename is the category slug, so records do not contain a `category` field. Project IDs are stable lowercase slugs, unique across all category files and distinct from category slugs. Adding a category file creates its listing and project pages at the next build. Category introductions are defined in `src/utils/explore.ts`.
-
-Cards use neutral horizontal rows with an official icon on the left, name, description and metadata badges in the middle, and a protection badge at the top right. Icons are hosted locally under `public/images/explore/` and referenced by each record's optional `image` field. Use X profile avatars consistently. Confer keeps its official app icon because no project X account was established. Records without an image use a name initial. Groups start at Basic. The shared `ProtectionLegend` component always explains all three levels in structured cards, independent of the projects on a page. Levels describe the strongest supported consumer configuration, including paid modes. Details explain defaults and requirements using the record's privacy highlights and notes. No comparison table, ranking, or FAQ is included.
-
-The licence field describes verified code, not the whole hosted service. Country means the operator's legal base, not server location. Unknown metadata remains null. Keep licensing out of privacy notes. Source URLs and review dates belong in each record.
-
-Verify the catalog routes with `PLAYWRIGHT_PORT=4319 npm run test:e2e -- tests/explore.spec.ts`. Choose an unused port when other projects are running locally.
+The catalog is `data/private-ai.json`.
 
 ## Image to text
 

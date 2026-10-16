@@ -322,7 +322,7 @@ export function ProjectProfile({
               <Link
                 key={alternative.id}
                 href={`/explore/${alternative.id}`}
-                className={`${projectSurface} flex min-w-0 items-center gap-3 p-4`}
+                className={`${projectSurface} relative flex min-w-0 items-start gap-3 p-4`}
               >
                 {alternative.image && (
                   <Image
@@ -335,13 +335,18 @@ export function ProjectProfile({
                   />
                 )}
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-medium">{alternative.name}</h3>
-                  <p className="text-base-content/75 mt-1 truncate text-sm">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-base font-medium">
+                      {alternative.name}
+                    </h3>
+                    <ProtectionBadge level={alternative.protection_level} />
+                  </div>
+                  <p className="text-base-content/75 mt-1 truncate pr-5 text-sm">
                     {alternative.description}
                   </p>
                 </div>
                 <ArrowUpRight
-                  className="text-base-content/55 size-4 shrink-0"
+                  className="text-base-content/55 pointer-events-none absolute right-3 bottom-3 size-4"
                   aria-hidden="true"
                 />
               </Link>

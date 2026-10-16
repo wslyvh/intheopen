@@ -56,7 +56,7 @@
       "https://profincognito.me/tools/ai/braveleo/"
     ],
     "checked_at": "2026-10-14",
-    "image": "/images/explore/brave-leo-6a7b2290.webp"
+    "image": "/images/explore/brave-leo.webp"
   },
   {
     "id": "proton-lumo",
@@ -124,7 +124,7 @@
       "https://apps.apple.com/us/app/lumo-ai-by-proton/id6746714949"
     ],
     "checked_at": "2026-10-14",
-    "image": "/images/explore/proton-lumo-583f034f.webp"
+    "image": "/images/explore/proton-lumo.webp"
   },
   {
     "id": "duck-ai",
@@ -187,7 +187,7 @@
       "https://www.techradar.com/pro/duck-ai-review"
     ],
     "checked_at": "2026-10-14",
-    "image": "/images/explore/duck-ai-7f0ba876.webp"
+    "image": "/images/explore/duck-ai.webp"
   },
   {
     "id": "venice",
@@ -251,7 +251,7 @@
       "https://www.roborhythms.com/venice-ai-review/"
     ],
     "checked_at": "2026-10-14",
-    "image": "/images/explore/venice-7c38bdf4.webp"
+    "image": "/images/explore/venice.webp"
   },
   {
     "id": "confer",
@@ -316,6 +316,6 @@
       "https://decrypt.co/359454/best-ai-tools-respect-privacy"
     ],
     "checked_at": "2026-10-14",
-    "image": "/images/explore/confer-d694735d.webp"
+    "image": "/images/explore/confer.webp"
   }
 ]

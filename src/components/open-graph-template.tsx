@@ -15,9 +15,10 @@ export const ogColors = {
 interface OpenGraphTemplateProps {
   title: string;
   eyebrow: string;
-  footer?: string;
+  footer?: string | null;
   footerDivider?: boolean;
   brandFooter?: boolean;
+  domainColor?: string;
   visual: ReactNode;
 }
 
@@ -111,23 +112,27 @@ export async function renderOpenGraph(props: OpenGraphTemplateProps) {
           style={{
             fontFamily: props.brandFooter ? "Satoshi" : "JetBrains Mono",
             fontSize: props.brandFooter ? 20 : 19,
-            color: ogColors.green,
+            color: props.brandFooter
+              ? ogColors.green
+              : (props.domainColor ?? ogColors.green),
           }}
         >
           {props.brandFooter ? "build / grow / connect" : "intheopen.cc"}
         </div>
-        <div
-          style={{
-            fontFamily: props.brandFooter ? "Satoshi" : "JetBrains Mono",
-            fontSize: props.brandFooter ? 20 : 12,
-            marginTop: 12,
-            color: ogColors.muted,
-          }}
-        >
-          {props.brandFooter
-            ? "intheopen.cc"
-            : (props.footer ?? "runs locally in your browser")}
-        </div>
+        {props.footer !== null && (
+          <div
+            style={{
+              fontFamily: props.brandFooter ? "Satoshi" : "JetBrains Mono",
+              fontSize: props.brandFooter ? 20 : 12,
+              marginTop: 12,
+              color: ogColors.muted,
+            }}
+          >
+            {props.brandFooter
+              ? "intheopen.cc"
+              : (props.footer ?? "runs locally in your browser")}
+          </div>
+        )}
       </div>
       <div
         style={{

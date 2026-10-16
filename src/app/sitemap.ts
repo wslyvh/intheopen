@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/utils/site";
-import { categories } from "@/utils/explore";
+import { loadCategories } from "@/utils/explore";
 
 const lastModified = "2026-09-23";
 
@@ -54,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...categories.flatMap((category) => [
+    ...loadCategories().flatMap((category) => [
       {
         url: `${site.url}/explore/${category.slug}`,
         lastModified: category.projects

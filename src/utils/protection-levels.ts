@@ -2,23 +2,23 @@ export const protectionLevels = [
   {
     id: "basic",
     title: "Basic",
-    summary: "Limits data use",
+    summary: "Limits data collection",
     description:
-      "Policies and settings limit training and storage. Service providers can still read requests during processing.",
+      "Reduces how much personal information is collected, stored or shared. Some information remains accessible to the companies behind the service.",
   },
   {
     id: "enhanced",
     title: "Enhanced",
-    summary: "Protects conversation content",
+    summary: "Keeps more information private",
     description:
-      "Technical controls protect messages and history from service operators. External tools can still share information.",
+      "Adds technical protections that limit what companies and other parties can access, not just how they promise to use it.",
   },
   {
-    id: "high_risk",
-    title: "High-risk",
-    summary: "Addresses a specific threat",
+    id: "maximum",
+    title: "Maximum",
+    summary: "Protects your data and identity",
     description:
-      "Requires a defined threat model and stronger evidence that the protections hold against that threat.",
+      "Combines strong data protection with measures that make your activity harder to trace back to you.",
   },
 ] as const;
 
