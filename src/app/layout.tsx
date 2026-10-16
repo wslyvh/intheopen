@@ -37,6 +37,9 @@ const jetBrainsMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   applicationName: site.name,
+  verification: {
+    google: "vXeNYFlm7fy3tZSY7aGKKiTwCvKCDM4WGxWCku4ZhAU",
+  },
   title: {
     default: site.title,
     template: `%s | ${site.name}`,
