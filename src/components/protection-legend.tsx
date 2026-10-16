@@ -28,8 +28,8 @@ export function ProtectionLegend() {
         ))}
       </div>
       <p className="text-base-content/75 mt-5 text-sm leading-6">
-        Protection levels can depend on settings or plans. Read the project's
-        privacy context to get the right level of protection.
+        Protection levels can depend on settings or plans. Read the
+        project&apos;s privacy context to get the right level of protection.
       </p>
     </section>
   );

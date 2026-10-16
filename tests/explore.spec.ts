@@ -29,6 +29,30 @@ test("Explore redirects to its first category and returns 404 for unknown profil
   expect(missing.status()).toBe(404);
 });
 
+test("main navigation opens Explore without changing the four homepage work cards", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const navigation = page.getByRole("navigation", {
+    name: "Main",
+    exact: true,
+  });
+  await expect(navigation.getByRole("link")).toHaveText([
+    "explore",
+    "tools",
+    "about",
+  ]);
+  await expect(page.locator("main .sm\\:grid-cols-2 > a")).toHaveCount(4);
+  await expect(
+    page.getByRole("link", { name: "Explore private AI", exact: true }),
+  ).toHaveCount(0);
+  await navigation.getByRole("link", { name: "explore", exact: true }).click();
+  await expect(page).toHaveURL(/\/explore\/private-ai$/);
+  await expect(
+    page.getByRole("navigation", { name: "Main", exact: true }),
+  ).toBeVisible();
+});
+
 const entries = [{ id: "private-ai", name: "Private AI" }, ...projects];
 for (const entry of entries) {
   test(`${entry.name} has complete rendered metadata and structured data`, async ({
@@ -94,8 +118,8 @@ for (const entry of entries) {
     if (entry.id !== "private-ai") {
       const breadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
       await expect(
-        breadcrumb.getByRole("link", { name: "explore", exact: true }),
-      ).toHaveAttribute("href", "/explore/private-ai");
+        breadcrumb.getByRole("link", { name: "Home", exact: true }),
+      ).toHaveAttribute("href", "/");
       await expect(
         breadcrumb.getByRole("link", { name: "Private AI", exact: true }),
       ).toHaveAttribute("href", "/explore/private-ai");

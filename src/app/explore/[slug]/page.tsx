@@ -110,8 +110,8 @@ export default async function ExplorePage({ params }: Props) {
           {
             "@type": "ListItem",
             position: 1,
-            name: "Explore",
-            item: `${site.url}/explore/${entry.category.slug}`,
+            name: "Home",
+            item: site.url,
           },
           ...(project
             ? [
@@ -178,16 +178,12 @@ export default async function ExplorePage({ params }: Props) {
         >
           <ol className="flex flex-wrap items-center gap-3">
             <li>
-              {entry.project ? (
-                <Link
-                  href={`/explore/${entry.category.slug}`}
-                  className="text-base-content focus-visible:outline-primary hover:text-base-content/75 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
-                >
-                  explore
-                </Link>
-              ) : (
-                <span className="text-base-content/75">explore</span>
-              )}
+              <Link
+                href="/"
+                className="text-base-content focus-visible:outline-primary hover:text-base-content/75 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                Home
+              </Link>
             </li>
             <li aria-hidden="true" className="text-base-content/40">
               /
