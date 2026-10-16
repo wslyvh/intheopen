@@ -96,7 +96,7 @@ export function ProjectCard({ project }: { project: Project }) {
             return (
               <span key={platform} className={metadataBadge}>
                 <Icon className="size-3.5" aria-hidden="true" />{" "}
-                {platformLabels[platform]}
+                {platformLabels[platform] ?? platform}
               </span>
             );
           })}
@@ -209,14 +209,18 @@ export function ProjectProfile({
       "Features",
       <FactValues
         key="features"
-        values={project.features.map((feature) => featureLabels[feature])}
+        values={project.features.map(
+          (feature) => featureLabels[feature] ?? feature,
+        )}
       />,
     ],
     [
       "Platforms",
       <FactValues
         key="platforms"
-        values={project.platforms.map((platform) => platformLabels[platform])}
+        values={project.platforms.map(
+          (platform) => platformLabels[platform] ?? platform,
+        )}
       />,
     ],
     ["Pricing", pricingLabels[project.pricing]],
