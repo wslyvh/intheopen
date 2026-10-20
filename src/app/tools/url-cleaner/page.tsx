@@ -2,21 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { UrlCleaner } from "@/components/url-cleaner";
+import { site } from "@/utils/site";
 
 const description = "Remove tracking from links before you share them.";
+const metaDescription =
+  "Remove tracking from links before you share them. Clean supported tracking parameters and redirects locally in your browser, then copy the cleaned URL.";
 
 export const metadata: Metadata = {
   title: "URL cleaner",
-  description,
+  description: metaDescription,
   alternates: { canonical: "/tools/url-cleaner" },
   openGraph: {
-    title: "URL cleaner | In the Open",
-    description,
+    type: "website",
+    siteName: site.name,
+    locale: site.locale,
+    title: `URL cleaner | ${site.name}`,
+    description: metaDescription,
     url: "/tools/url-cleaner",
   },
   twitter: {
-    title: "URL cleaner | In the Open",
-    description,
+    card: "summary_large_image",
+    title: `URL cleaner | ${site.name}`,
+    description: metaDescription,
   },
 };
 

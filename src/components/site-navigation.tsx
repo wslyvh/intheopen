@@ -7,7 +7,7 @@ export function SiteNavigation() {
       className="flex items-center gap-3 font-mono text-sm font-bold lowercase sm:gap-6"
     >
       {[
-        { href: "/explore", label: "explore" },
+        { href: "/explore/private-ai", label: "explore" },
         { href: "/tools", label: "tools" },
         { href: "/about", label: "about" },
       ].map(({ href, label }) => (

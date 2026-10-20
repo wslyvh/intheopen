@@ -13,6 +13,7 @@ export interface Project {
   name: string;
   image?: string;
   description: string;
+  meta_description?: string;
   links: {
     website: string;
     github: string | null;

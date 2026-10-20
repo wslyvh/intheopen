@@ -16,14 +16,17 @@ const title = "Privacy tools";
 const description =
   "Simple tools to work with your files and protect personal information, locally on your device.";
 
+const metaDescription =
+  "Simple tools to work with your files and protect personal information, locally on your device. Extract text from images, redact text, and clean links.";
+
 export const metadata: Metadata = {
   title,
-  description,
+  description: metaDescription,
   alternates: { canonical: "/tools" },
   openGraph: {
     type: "website",
     title: `${title} | ${site.name}`,
-    description,
+    description: metaDescription,
     url: "/tools",
     siteName: site.name,
     images: [{ url: "/tools/opengraph-image", width: 1200, height: 630 }],
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
     site: "@intheopencc",
     creator: "@intheopencc",
     title: `${title} | ${site.name}`,
-    description,
+    description: metaDescription,
     images: ["/tools/opengraph-image"],
   },
 };

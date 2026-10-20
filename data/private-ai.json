@@ -204,6 +204,7 @@
     "id": "confer",
     "name": "Confer",
     "description": "An encrypted AI assistant for conversations, documents, web search, and connected services.",
+    "meta_description": "An encrypted AI assistant for conversations, documents, web search, and connected services. Review its privacy protections, features, and supported platforms.",
     "links": {
       "website": "https://confer.to/",
       "github": "https://github.com/conferlabs",

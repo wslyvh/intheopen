@@ -32,7 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title, description } = entry.project
     ? {
         title: `${entry.project.name}: Privacy and features`,
-        description: entry.project.description,
+        description:
+          entry.project.meta_description ?? entry.project.description,
       }
     : {
         ...categoryCopy(slug),
