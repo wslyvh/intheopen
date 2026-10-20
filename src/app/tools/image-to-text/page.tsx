@@ -6,19 +6,16 @@ import { site } from "@/utils/site";
 
 const title = "Image to text";
 const description =
-  "Extract text from images and screenshots, locally in your browser. Edit and copy the result.";
-
-const metaDescription =
   "Extract text from images and screenshots locally in your browser. Upload a PNG, JPEG, or WebP image, then review, edit, and copy the result.";
 
 export const metadata: Metadata = {
   title,
-  description: metaDescription,
+  description,
   alternates: { canonical: "/tools/image-to-text" },
   openGraph: {
     type: "website",
     title: `${title} | ${site.name}`,
-    description: metaDescription,
+    description,
     url: "/tools/image-to-text",
     siteName: site.name,
     images: [
@@ -30,7 +27,7 @@ export const metadata: Metadata = {
     site: "@intheopencc",
     creator: "@intheopencc",
     title: `${title} | ${site.name}`,
-    description: metaDescription,
+    description,
     images: ["/tools/image-to-text/opengraph-image"],
   },
 };

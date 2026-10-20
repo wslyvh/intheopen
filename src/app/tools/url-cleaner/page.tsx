@@ -4,26 +4,25 @@ import { PageHeader } from "@/components/page-header";
 import { UrlCleaner } from "@/components/url-cleaner";
 import { site } from "@/utils/site";
 
-const description = "Remove tracking from links before you share them.";
-const metaDescription =
+const description =
   "Remove tracking from links before you share them. Clean supported tracking parameters and redirects locally in your browser, then copy the cleaned URL.";
 
 export const metadata: Metadata = {
   title: "URL cleaner",
-  description: metaDescription,
+  description,
   alternates: { canonical: "/tools/url-cleaner" },
   openGraph: {
     type: "website",
     siteName: site.name,
     locale: site.locale,
     title: `URL cleaner | ${site.name}`,
-    description: metaDescription,
+    description,
     url: "/tools/url-cleaner",
   },
   twitter: {
     card: "summary_large_image",
     title: `URL cleaner | ${site.name}`,
-    description: metaDescription,
+    description,
   },
 };
 

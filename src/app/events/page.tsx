@@ -5,17 +5,17 @@ import { upcomingEvents } from "@/utils/events";
 import { site } from "@/utils/site";
 
 const title = "Events";
-const metaDescription =
+const description =
   "Find upcoming events about privacy, digital rights, and open technology. Browse dates and locations, then visit each event's official website.";
 
 export const metadata: Metadata = {
   title,
-  description: metaDescription,
+  description,
   alternates: { canonical: "/events" },
   openGraph: {
     type: "website",
     title: `${title} | ${site.name}`,
-    description: metaDescription,
+    description,
     url: "/events",
     siteName: site.name,
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     site: "@intheopencc",
     creator: "@intheopencc",
     title: `${title} | ${site.name}`,
-    description: metaDescription,
+    description,
     images: ["/opengraph-image"],
   },
 };
