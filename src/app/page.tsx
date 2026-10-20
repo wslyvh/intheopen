@@ -64,9 +64,10 @@ export default function HomePage() {
             <div className="lg:flex lg:flex-1 lg:items-center">
               <div>
                 <h1>
+                  <span className="sr-only">{site.name}</span>
                   <Image
                     src="/images/logo.png"
-                    alt={site.name}
+                    alt=""
                     width={1000}
                     height={195}
                     className="h-auto w-full max-w-[29rem]"

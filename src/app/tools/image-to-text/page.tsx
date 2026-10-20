@@ -6,7 +6,7 @@ import { site } from "@/utils/site";
 
 const title = "Image to text";
 const description =
-  "Extract text from images and screenshots, locally in your browser. Edit and copy the result.";
+  "Extract text from images and screenshots locally in your browser. Upload a PNG, JPEG, or WebP image, then review, edit, and copy the result.";
 
 export const metadata: Metadata = {
   title,

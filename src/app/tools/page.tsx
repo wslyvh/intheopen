@@ -14,7 +14,7 @@ import { privacyTools } from "@/utils/tools";
 
 const title = "Privacy tools";
 const description =
-  "Simple tools to work with your files and protect personal information, locally on your device.";
+  "Simple tools to work with your files and protect personal information, locally on your device. Extract text from images, redact text, and clean links.";
 
 export const metadata: Metadata = {
   title,

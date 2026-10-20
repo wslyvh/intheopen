@@ -46,6 +46,9 @@ test("main navigation opens Explore without changing the four homepage work card
   await expect(
     page.getByRole("link", { name: "Explore private AI", exact: true }),
   ).toHaveCount(0);
+  await expect(
+    navigation.getByRole("link", { name: "explore", exact: true }),
+  ).toHaveAttribute("href", "/explore/private-ai");
   await navigation.getByRole("link", { name: "explore", exact: true }).click();
   await expect(page).toHaveURL(/\/explore\/private-ai$/);
   await expect(

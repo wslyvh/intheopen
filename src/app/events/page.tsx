@@ -6,7 +6,7 @@ import { site } from "@/utils/site";
 
 const title = "Events";
 const description =
-  "Upcoming events about privacy, digital rights, and open technology.";
+  "Find upcoming events about privacy, digital rights, and open technology. Browse dates and locations, then visit each event's official website.";
 
 export const metadata: Metadata = {
   title,
