@@ -27,7 +27,7 @@
         "Submitting feedback shares the full conversation with Brave, which keeps it for one year.",
         "Premium confirms payment without attaching your payment details to each chat request."
       ],
-      "notes": "Select GLM 5.3 Flash in Leo to use the protected beta, available in the stable browser. It does not cover every model or feature. Brave currently verifies the protected environment and supplies its encryption key to your browser. Web search sends generated queries to Brave Search, which can read them under a zero-retention policy. Leo keeps its Basic rating while the protected mode is in beta. With other models, sync protects saved history, but messages and selected page content become readable when included in a request."
+      "notes": "Select GLM 5.3 Flash in Leo to use the protected beta, available in the stable browser. This protection does not extend to other models or every Leo feature. Brave currently verifies the protected environment and supplies its encryption key to your browser. Web search sends generated queries to Brave Search, which can read them under a zero-retention policy."
     },
     "research_notes": [
       "When GLM 5.3 Flash leaves beta or protected processing expands, reassess supported models, feature coverage and browser-side verification before changing the protection level.",
