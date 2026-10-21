@@ -20,16 +20,17 @@
     "protection_level": "basic",
     "privacy": {
       "highlights": [
-        "The service can read messages, earlier messages and files included in a request.",
+        "The GLM 5.3 Flash beta offers Enhanced protection. Messages are encrypted on your device and processed in a protected computing environment.",
+        "With other hosted models, the service can read messages, earlier messages and files included in a request.",
         "History stays on your device by default. Optional sync stores an encrypted copy that the service cannot decrypt.",
         "Brave says requests are deleted after processing and ordinary chats are not used for training. Large requests can be kept for a few minutes.",
         "Submitting feedback shares the full conversation with Brave, which keeps it for one year.",
         "Premium confirms payment without attaching your payment details to each chat request."
       ],
-      "notes": "This protection level covers the built-in hosted service, not a custom local-model setup. Requests can also include selected web-page content. Sync protects saved history, but earlier messages become readable when included in a request."
+      "notes": "Select GLM 5.3 Flash in Leo to use the protected beta, available in the stable browser. It does not cover every model or feature. Brave currently verifies the protected environment and supplies its encryption key to your browser. Web search sends generated queries to Brave Search, which can read them under a zero-retention policy. Leo keeps its Basic rating while the protected mode is in beta. With other models, sync protects saved history, but messages and selected page content become readable when included in a request."
     },
     "research_notes": [
-      "When Leo private inference expands beyond its announced experimental rollout, check supported models, client verification, search, and document uploads before changing the protection assessment.",
+      "When GLM 5.3 Flash leaves beta or protected processing expands, reassess supported models, feature coverage and browser-side verification before changing the protection level.",
       "Recheck browser automation when it leaves experimental testing. Confirm supported platforms and safeguards before recommending it."
     ],
     "sources": [
@@ -39,6 +40,9 @@
       "https://support.brave.app/api/v2/help_center/en-us/articles/26727364100493.json",
       "https://brave.com/blog/ai-browsing/",
       "https://brave.com/blog/browser-ai-tee/",
+      "https://brave.com/blog/browser-ai-e2ee/",
+      "https://github.com/brave/ai-gateway/blob/main/aichat/serve/ohttp.py",
+      "https://github.com/brave/ai-gateway/blob/main/aichat/serve/services/near.py",
       "https://raw.githubusercontent.com/brave/brave-core/master/docs/premium_account_privacy.md",
       "https://raw.githubusercontent.com/brave/brave-core/master/LICENSE",
       "https://brave.com/blog/published-proxy-config/",
@@ -47,7 +51,7 @@
       "https://raw.githubusercontent.com/brave/brave-core/master/components/ai_chat/core/browser/utils.cc",
       "https://profincognito.me/tools/ai/braveleo/"
     ],
-    "checked_at": "2026-10-14",
+    "checked_at": "2026-10-21",
     "image": "/images/explore/brave-leo.webp"
   },
   {
