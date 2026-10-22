@@ -22,7 +22,6 @@ export const size = ogSize;
 export const contentType = "image/png";
 
 const card = 168;
-const gap = 20;
 
 async function pngDataUrl(publicPath: string) {
   const file = join(process.cwd(), "public", publicPath.replace(/^\//, ""));
@@ -138,10 +137,25 @@ export default async function Image({
     ),
   );
   if (!project) {
-    const columns: { offset: number; ids: string[] }[] = [
-      { offset: 0, ids: ["brave-leo", "duck-ai"] },
-      { offset: 94, ids: ["proton-lumo", "venice"] },
-      { offset: 36, ids: ["confer"] },
+    const cell = 112;
+    const gridWidth = cell * 7;
+    const gridHeight = cell * 5;
+    const placements = [
+      { id: "brave-leo", column: 1, row: 4 },
+      { id: "duck-ai", column: 2, row: 2 },
+      { id: "proton-lumo", column: 3, row: 3 },
+      { id: "venice", column: 4, row: 0 },
+      { id: "confer", column: 6, row: 1 },
+    ];
+    const tintedCells = [
+      { column: 0, row: 2, fill: "#efe8d8", opacity: 0.55 },
+      { column: 1, row: 3, fill: ogColors.line, opacity: 0.9 },
+      { column: 2, row: 4, fill: "#efe8d8", opacity: 0.7 },
+      { column: 3, row: 1, fill: ogColors.line, opacity: 0.6 },
+      { column: 4, row: 2, fill: ogColors.muted, opacity: 0.22 },
+      { column: 5, row: 1, fill: "#efe8d8", opacity: 0.9 },
+      { column: 5, row: 3, fill: ogColors.line, opacity: 0.65 },
+      { column: 6, row: 0, fill: ogColors.muted, opacity: 0.3 },
     ];
     return renderOpenGraph({
       title: "Private AI",
@@ -153,26 +167,102 @@ export default async function Image({
         <div
           style={{
             display: "flex",
-            width: "100%",
-            height: "100%",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            gap,
+            position: "absolute",
+            left: -168,
+            top: -20,
+            width: gridWidth,
+            height: gridHeight,
           }}
         >
-          {columns.map((column) => (
+          <svg
+            width={gridWidth}
+            height={gridHeight}
+            viewBox={`0 0 ${gridWidth} ${gridHeight}`}
+          >
+            <defs>
+              <radialGradient id="grid-fade" cx="60%" cy="45%" r="70%">
+                <stop offset="0%" stopColor="white" />
+                <stop offset="65%" stopColor="white" stopOpacity="0.65" />
+                <stop offset="100%" stopColor="white" stopOpacity="0" />
+              </radialGradient>
+              <mask id="grid-mask">
+                <rect
+                  width={gridWidth}
+                  height={gridHeight}
+                  fill="url(#grid-fade)"
+                />
+              </mask>
+            </defs>
+            <g mask="url(#grid-mask)">
+              {tintedCells.map(({ column, row, fill, opacity }) => (
+                <rect
+                  key={`${column}-${row}`}
+                  x={column * cell}
+                  y={row * cell}
+                  width={cell}
+                  height={cell}
+                  fill={fill}
+                  opacity={opacity}
+                />
+              ))}
+              {Array.from({ length: 8 }, (_, index) => (
+                <line
+                  key={`v-${index}`}
+                  x1={index * cell + 0.5}
+                  y1="0"
+                  x2={index * cell + 0.5}
+                  y2={gridHeight}
+                  stroke={ogColors.line}
+                  strokeWidth="1"
+                />
+              ))}
+              {Array.from({ length: 6 }, (_, index) => (
+                <line
+                  key={`h-${index}`}
+                  x1="0"
+                  y1={index * cell + 0.5}
+                  x2={gridWidth}
+                  y2={index * cell + 0.5}
+                  stroke={ogColors.line}
+                  strokeWidth="1"
+                />
+              ))}
+            </g>
+            {placements.map(({ id, column, row }) => (
+              <rect
+                key={`outline-${id}`}
+                x={column * cell + 0.5}
+                y={row * cell + 0.5}
+                width={cell}
+                height={cell}
+                fill="none"
+                stroke={ogColors.line}
+                strokeWidth="1"
+              />
+            ))}
+          </svg>
+          {placements.map(({ id, column, row }) => (
             <div
-              key={column.offset}
+              key={id}
               style={{
                 display: "flex",
-                flexDirection: "column",
-                gap,
-                marginTop: column.offset,
+                position: "absolute",
+                left: column * cell + 1,
+                top: row * cell + 1,
+                width: cell - 2,
+                height: cell - 2,
+                alignItems: "center",
+                justifyContent: "center",
+                background: ogColors.paper,
               }}
             >
-              {column.ids.map((id) => (
-                <LogoCard key={id} src={logos[id]} />
-              ))}
+              <img
+                src={logos[id]}
+                width={cell - 2}
+                height={cell - 2}
+                alt=""
+                style={{ objectFit: "contain" }}
+              />
             </div>
           ))}
         </div>
