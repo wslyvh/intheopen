@@ -23,7 +23,24 @@ npm run format
 
 `/explore/private-ai` lists reviewed AI assistants and how they handle privacy. `/explore` redirects there. Each project has a profile at `/explore/{id}`.
 
-The catalog is `data/private-ai.json`.
+The AI catalog is `data/private-ai.json`.
+
+### Black Friday deals
+
+`/explore/deals` lists Black Friday privacy deals from
+`data/deals/black-friday-2026.json`. The JSON is a manually checked array; each
+entry has `title`, `description` (what the product does), `deal` (the offer),
+`icon` (official logo URL or local image path, otherwise `null`), `category`,
+`tags` (an array of strings), and `url` (the official offer page). `code`,
+`expires`, and `terms` contain confirmed details or `null`; omitted optional
+fields are also supported. Use an exact ISO date for `expires`, or an ISO
+timestamp with its timezone when an exact end time is stated. Do not infer an
+expiry from the event name. The page shows the catalog's check date separately.
+
+Keep deal catalogs in `data/deals/`, not directly in `data/`: the existing Explore
+loader treats every root-level JSON file as an AI project category. Search,
+category, and tag filters are derived from the deal entries. No scraping or
+scheduled maintenance is involved.
 
 ## Image to text
 
