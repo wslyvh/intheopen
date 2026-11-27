@@ -1,224 +1,108 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { DealSubmissionForm } from "@/components/deal-submission-form";
+
 import type { Deal } from "@/utils/deals";
 
+// Keep the card surface and layout aligned with ProjectCard in explore-projects.
+const projectSurface =
+  "group border-base-300 bg-base-200 hover:bg-base-300/40 focus-visible:outline-primary border transition-colors focus-visible:outline-2 focus-visible:outline-offset-4";
 const metadataBadge =
-  "text-base-content/75 bg-base-content/5 inline-flex items-center rounded-full px-2.5 py-1 text-xs";
-
-function DealIcon({ deal }: { deal: Deal }) {
-  const [failed, setFailed] = useState(false);
-  return (
-    <div className="bg-base-100 flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md sm:size-20">
-      {deal.icon && !failed ? (
-        <Image
-          src={deal.icon}
-          alt=""
-          width={80}
-          height={80}
-          sizes="(min-width: 640px) 80px, 48px"
-          className="size-full object-contain"
-          unoptimized
-          onError={() => setFailed(true)}
-        />
-      ) : (
-        <span
-          className="text-base-content/75 text-2xl font-medium"
-          aria-hidden="true"
-        >
-          {deal.title[0]}
-        </span>
-      )}
-    </div>
-  );
-}
-
-function expiryLabel(expires: string) {
-  const date = new Date(expires);
-  if (Number.isNaN(date.getTime())) return expires;
-  return (
-    new Intl.DateTimeFormat("en-GB", {
-      dateStyle: "long",
-      ...(expires.includes("T") ? { timeStyle: "short" } : {}),
-      timeZone: "UTC",
-    }).format(date) + (expires.includes("T") ? " UTC" : "")
-  );
-}
+  "badge badge-soft badge-sm h-auto min-h-5 whitespace-normal font-mono";
 
 function DealCard({ deal, index }: { deal: Deal; index: number }) {
   return (
-    <article
+    <a
+      href={deal.url}
+      target="_blank"
+      rel="noopener noreferrer"
       aria-labelledby={`deal-${index}-title`}
-      className="group border-base-300 bg-base-200 hover:bg-base-300/40 flex min-w-0 items-start gap-4 border p-4 transition-colors sm:gap-6 sm:p-6"
+      className={`${projectSurface} relative flex items-start gap-4 p-4 sm:gap-6 sm:p-6`}
     >
-      <DealIcon deal={deal} />
+      <div className="bg-base-100 flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md sm:size-20">
+        {deal.icon ? (
+          <Image
+            src={deal.icon}
+            alt=""
+            width={80}
+            height={80}
+            sizes="(min-width: 640px) 80px, 48px"
+            className="size-full object-contain"
+            unoptimized
+          />
+        ) : (
+          <span
+            className="text-base-content/75 text-2xl font-medium"
+            aria-hidden="true"
+          >
+            {deal.title[0]}
+          </span>
+        )}
+      </div>
       <div className="min-w-0 flex-1 break-words">
-        <h2
-          id={`deal-${index}-title`}
-          className="text-lg font-medium sm:text-xl"
-        >
-          {deal.title}
-        </h2>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <h3
+            id={`deal-${index}-title`}
+            className="min-w-0 basis-full text-lg font-medium sm:basis-auto sm:text-xl"
+          >
+            {deal.title}
+          </h3>
+          <div className="ml-auto flex max-w-full flex-wrap justify-end gap-2 text-right sm:max-w-[55%] sm:shrink-0">
+            {deal.lifetime && <span className={metadataBadge}>Lifetime</span>}
+            <span className={metadataBadge}>{deal.category}</span>
+          </div>
+        </div>
         <p className="text-base-content/75 mt-2 text-sm leading-6 sm:text-base">
           {deal.description}
         </p>
-        <p className="mt-4 text-lg leading-7 font-medium sm:text-xl">
+        <p className="bg-primary/10 mt-3 inline-block max-w-full px-2 py-1 text-sm leading-6 font-medium">
           {deal.deal}
+          {deal.code && (
+            <>
+              {" · Code: "}
+              <code className="font-mono [overflow-wrap:anywhere]">
+                {deal.code}
+              </code>
+            </>
+          )}
         </p>
-        <ul
-          aria-label="Category and tags"
-          className="mt-3 flex flex-wrap gap-2"
-        >
-          <li className={metadataBadge}>{deal.category}</li>
-          {deal.tags.map((tag) => (
-            <li key={tag} className={metadataBadge}>
-              {tag}
-            </li>
-          ))}
-        </ul>
-        {deal.terms && (
-          <p className="text-base-content/75 mt-4 text-sm leading-6">
-            {deal.terms}
-          </p>
-        )}
-        {deal.code && (
-          <p className="mt-3 text-sm leading-6">
-            Code:{" "}
-            <code className="bg-base-100 px-2 py-1 font-mono [overflow-wrap:anywhere]">
-              {deal.code}
-            </code>
-          </p>
-        )}
-        {deal.expires && (
-          <p className="text-base-content/75 mt-3 text-sm leading-6">
-            Ends{" "}
-            <time dateTime={deal.expires}>{expiryLabel(deal.expires)}</time>
-          </p>
-        )}
-        <a
-          href={deal.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-base-content/75 focus-visible:outline-primary mt-3 inline-flex min-h-11 items-center gap-2 font-mono text-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
-        >
-          View official deal{" "}
-          <ArrowUpRight className="size-4 shrink-0" aria-hidden="true" />
-        </a>
       </div>
-    </article>
+    </a>
   );
 }
 
 export function ExploreDeals({ deals }: { deals: Deal[] }) {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("");
-  const [tag, setTag] = useState("");
   const categories = [...new Set(deals.map((deal) => deal.category))].sort();
-  const tags = [...new Set(deals.flatMap((deal) => deal.tags))].sort();
-  const search = query.trim().toLowerCase();
-  const filtered = deals.filter(
-    (deal) =>
-      (!category || deal.category === category) &&
-      (!tag || deal.tags.includes(tag)) &&
-      (!search ||
-        [
-          deal.title,
-          deal.description,
-          deal.deal,
-          deal.category,
-          ...deal.tags,
-          deal.code,
-          deal.terms,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase()
-          .includes(search)),
-  );
-  const field =
-    "border-base-300 bg-base-200 focus-visible:outline-primary mt-2 min-h-11 w-full min-w-0 border px-3 py-2 text-base focus-visible:outline-2 focus-visible:outline-offset-2";
-
   return (
-    <section aria-label="Deals" className="mt-10">
-      <form
-        role="search"
-        aria-label="Filter deals"
-        onSubmit={(event) => event.preventDefault()}
-        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_14rem_12rem]"
-      >
-        <label className="min-w-0 sm:col-span-2 lg:col-span-1">
-          <span className="font-mono text-sm">Search deals</span>
-          <input
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search products, offers, or codes"
-            className={field}
-          />
-        </label>
-        <label className="min-w-0">
-          <span className="font-mono text-sm">Category</span>
-          <select
-            value={category}
-            onChange={(event) => setCategory(event.target.value)}
-            className={field}
-          >
-            <option value="">All categories</option>
-            {categories.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="min-w-0">
-          <span className="font-mono text-sm">Tag</span>
-          <select
-            value={tag}
-            onChange={(event) => setTag(event.target.value)}
-            className={field}
-          >
-            <option value="">All tags</option>
-            {tags.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </label>
-      </form>
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-        <p role="status" className="text-base-content/75 text-sm">
-          Showing {filtered.length} of {deals.length} deals
-        </p>
-        <button
-          type="button"
-          disabled={!query && !category && !tag}
-          onClick={() => {
-            setQuery("");
-            setCategory("");
-            setTag("");
-          }}
-          className="hover:text-base-content/75 focus-visible:outline-primary min-h-11 font-mono text-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 disabled:opacity-40"
+    <div aria-label="Deals">
+      {categories.map((category, index) => (
+        <section
+          key={category}
+          aria-labelledby={`deal-category-${index}`}
+          className="mt-12"
         >
-          Clear filters
-        </button>
-      </div>
-      <div className="mt-3 grid gap-3">
-        {filtered.map((deal, index) => (
-          <DealCard key={deal.title} deal={deal} index={index} />
-        ))}
-      </div>
-      {filtered.length === 0 && (
-        <div className="border-base-300 bg-base-200 mt-3 border p-6">
-          <p className="font-medium">No deals match your filters.</p>
-          <p className="text-base-content/75 mt-2 text-sm leading-6">
-            Try another search or clear the filters to see all deals.
-          </p>
-        </div>
-      )}
-    </section>
+          <div className="flex items-center justify-between gap-3">
+            <h2
+              id={`deal-category-${index}`}
+              className="min-w-0 text-2xl font-medium lowercase"
+            >
+              {category}
+            </h2>
+            {index === 0 && <DealSubmissionForm categories={categories} />}
+          </div>
+          <div className="mt-5 grid gap-3">
+            {deals
+              .filter((deal) => deal.category === category)
+              .sort((a, b) => a.title.localeCompare(b.title, "en"))
+              .map((deal) => (
+                <DealCard
+                  key={deal.title}
+                  deal={deal}
+                  index={deals.indexOf(deal)}
+                />
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
   );
 }

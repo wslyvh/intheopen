@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${site.url}/explore/deals`,
+      url: `${site.url}/explore/black-friday`,
       lastModified: "2026-11-27",
       changeFrequency: "daily",
       priority: 0.8,

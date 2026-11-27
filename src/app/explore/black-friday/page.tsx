@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ExploreDeals } from "@/components/explore-deals";
+
 import { JsonLd } from "@/components/json-ld";
 import { PageHeader } from "@/components/page-header";
-import {
-  dealsCheckedAt,
-  dealsDescription,
-  dealsTitle,
-  loadDeals,
-} from "@/utils/deals";
+import { dealsDescription, dealsTitle, loadDeals } from "@/utils/deals";
 import { site } from "@/utils/site";
 
-const path = "/explore/deals";
+const path = "/explore/black-friday";
 const url = `${site.url}${path}`;
 
 export const metadata: Metadata = {
@@ -54,7 +50,7 @@ export default function DealsPage() {
         inLanguage: site.language,
         isPartOf: { "@id": `${site.url}/#website` },
         publisher: { "@id": `${site.url}/#organization` },
-        lastReviewed: dealsCheckedAt,
+
         mainEntity: { "@id": `${url}#deals` },
       },
       {
@@ -108,7 +104,7 @@ export default function DealsPage() {
               /
             </li>
             <li aria-current="page" className="text-base-content/75">
-              Deals
+              Black Friday
             </li>
           </ol>
         </nav>
@@ -117,11 +113,6 @@ export default function DealsPage() {
         </h1>
         <p className="text-base-content/75 mt-6 max-w-2xl text-lg leading-8">
           {dealsDescription}
-        </p>
-        <p className="text-base-content/75 mt-4 text-sm leading-6">
-          Checked <time dateTime={dealsCheckedAt}>27 November 2026</time>.
-          Offers can change; check the official page for current pricing and
-          eligibility.
         </p>
         <ExploreDeals deals={deals} />
       </section>

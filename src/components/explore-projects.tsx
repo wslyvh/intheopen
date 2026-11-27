@@ -129,7 +129,7 @@ export function CategoryProjects({
         {copy.description}
       </p>
       <p className="mt-5 text-sm">
-        <Link href="/explore/deals" className={textLink}>
+        <Link href="/explore/black-friday" className={textLink}>
           Black Friday privacy deals
         </Link>
       </p>

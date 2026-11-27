@@ -27,20 +27,38 @@ The AI catalog is `data/private-ai.json`.
 
 ### Black Friday deals
 
-`/explore/deals` lists Black Friday privacy deals from
+`/explore/black-friday` lists Black Friday privacy deals from
 `data/deals/black-friday-2026.json`. The JSON is a manually checked array; each
 entry has `title`, `description` (what the product does), `deal` (the offer),
 `icon` (official logo URL or local image path, otherwise `null`), `category`,
-`tags` (an array of strings), and `url` (the official offer page). `code`,
-`expires`, and `terms` contain confirmed details or `null`; omitted optional
-fields are also supported. Use an exact ISO date for `expires`, or an ISO
-timestamp with its timezone when an exact end time is stated. Do not infer an
-expiry from the event name. The page shows the catalog's check date separately.
+`lifetime` (a boolean), `url` (the official offer page), and `code` (a required
+code or `null`). Categories are Email, Storage, VPN & network, Passwords, Data
+removal, Apps & resources, and Hardware.
+
+Cards follow the Private AI project-card layout, with a compact deal line and
+an inline code when needed. Each whole card links to the official offer page;
+only entries with `lifetime: true` show a Lifetime badge. Cards are grouped by
+category. The homepage banner and Explore link both point to this route.
 
 Keep deal catalogs in `data/deals/`, not directly in `data/`: the existing Explore
-loader treats every root-level JSON file as an AI project category. Search,
-category, and tag filters are derived from the deal entries. No scraping or
-scheduled maintenance is involved.
+loader treats every root-level JSON file as an AI project category. This is a
+static category listing, with no filters, scraping, or scheduled maintenance.
+
+A right-aligned “Submit a deal” button on the first category heading row opens
+a native modal without moving the page. The form posts to `/api/deal-submissions`.
+The endpoint validates required fields, the contact email and the HTTP(S) offer
+link, then forwards the fields as plain text through the ImprovMX Send API.
+Contact details are sent only for review, never added to the public catalog.
+There is no database, automatic publication or rate-limiting service.
+
+Configure `IMPROVMX_API_KEY`, `DEAL_SUBMISSIONS_FROM` and `DEAL_SUBMISSIONS_TO`
+in the server environment. From must be an address on your ImprovMX sending
+domain and must differ from To. Keep these settings server-only, never use a
+`NEXT_PUBLIC_` prefix. Local settings belong in the ignored `.env.local` file;
+configure them separately on the deployment. The endpoint makes one send
+attempt and does not log form contents or mail-provider errors.
+
+Run `npm run test:submissions` for the email-forwarding and failure-path tests.
 
 ## Image to text
 

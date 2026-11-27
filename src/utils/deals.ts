@@ -7,17 +7,14 @@ export interface Deal {
   deal: string;
   icon: string | null;
   category: string;
-  tags: string[];
+  lifetime: boolean;
   url: string;
-  code?: string | null;
-  expires?: string | null;
-  terms?: string | null;
+  code: string | null;
 }
 
-export const dealsCheckedAt = "2026-11-27";
 export const dealsTitle = "Black Friday privacy deals";
 export const dealsDescription =
-  "Black Friday offers on privacy tools and services, with discounts, codes, terms, and links to official deal pages.";
+  "Black Friday offers on privacy tools and services. Browse by category and follow each deal to its official page.";
 
 export function loadDeals(): Deal[] {
   return JSON.parse(
