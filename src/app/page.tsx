@@ -41,6 +41,18 @@ export default function HomePage() {
       <header className="mx-auto flex w-full max-w-7xl justify-end px-5 pt-4 sm:px-8 sm:pt-6">
         <SiteNavigation />
       </header>
+      <div className="mx-auto mt-4 w-full max-w-7xl px-5 sm:px-8">
+        <Link
+          href="/explore/black-friday"
+          className="group border-primary/20 bg-primary/15 text-base-content hover:bg-primary/25 focus-visible:outline-primary flex items-center justify-between gap-4 border px-4 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
+          Black Friday privacy deals
+          <ArrowUpRight
+            className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
+        </Link>
+      </div>
       <section className="mx-auto grid w-full max-w-7xl flex-1 grid-rows-[minmax(0,1fr)_auto] px-5 pt-4 sm:px-8 sm:pt-6">
         <div className="relative grid min-h-0 items-start gap-6 py-6 lg:grid-cols-[minmax(24rem,0.9fr)_minmax(28rem,1.1fr)] lg:items-stretch lg:gap-12 lg:py-2">
           <div

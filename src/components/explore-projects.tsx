@@ -128,6 +128,11 @@ export function CategoryProjects({
       <p className="text-base-content/75 mt-6 max-w-2xl text-lg leading-8">
         {copy.description}
       </p>
+      <p className="mt-5 text-sm">
+        <Link href="/explore/black-friday" className={textLink}>
+          Black Friday privacy deals
+        </Link>
+      </p>
       {protectionLevels.map((level) => {
         const members = projects
           .filter((project) => project.protection_level === level.id)

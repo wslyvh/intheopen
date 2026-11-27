@@ -54,6 +54,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${site.url}/explore/black-friday`,
+      lastModified: "2026-11-27",
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
     ...loadCategories().flatMap((category) => [
       {
         url: `${site.url}/explore/${category.slug}`,

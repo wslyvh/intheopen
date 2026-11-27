@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test:e2e": "playwright test",
+    "test:submissions": "node --test tests/deal-submissions.test.mjs",
     "test:ocr": "npm test --prefix packages/ocr --",
     "test:url-cleaner": "npm test --prefix packages/url-cleaner",
     "predev": "npm run build --prefix packages/url-cleaner && npm run build --prefix packages/ocr && magpii-assets --out public/magpii && node node_modules/@intheopen/ocr/dist/assets.js public/ocr",

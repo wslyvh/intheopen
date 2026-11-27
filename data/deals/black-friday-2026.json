@@ -1,0 +1,402 @@
+[
+  {
+    "title": "Go Incognito V2",
+    "description": "Techlore’s privacy and security course.",
+    "icon": "/images/deals/go-incognito-v2.png",
+    "url": "https://tools.techlore.tech/",
+    "deal": "$25 off lifetime access",
+    "category": "Apps & resources",
+    "lifetime": true,
+    "code": "GODARK25"
+  },
+  {
+    "title": "iMazing",
+    "description": "An iPhone and iPad manager for local backups and data transfers.",
+    "icon": "/images/deals/imazing.png",
+    "url": "https://imazing.com/blackfriday",
+    "deal": "40% off Personal subscriptions",
+    "category": "Apps & resources",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "OsmAnd",
+    "description": "Offline maps and navigation based on OpenStreetMap.",
+    "icon": "/images/deals/osmand.png",
+    "url": "https://osmand.net/docs/user/purchases/android/",
+    "deal": "50% off selected plans",
+    "category": "Apps & resources",
+    "lifetime": true,
+    "code": null
+  },
+  {
+    "title": "Proton Unlimited",
+    "description": "Encrypted email, cloud storage, passwords and VPN in one subscription.",
+    "icon": "/images/deals/proton.png",
+    "url": "https://proton.me/black-friday",
+    "deal": "50% off your first year",
+    "category": "Apps & resources",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Standard Notes",
+    "description": "An encrypted notes app with cross-device sync.",
+    "icon": "/images/deals/standard-notes.png",
+    "url": "https://standardnotes.com/plans",
+    "deal": "50% off annual plans",
+    "category": "Apps & resources",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Incogni",
+    "description": "A service that requests removal of personal information from data brokers.",
+    "icon": "/images/deals/incogni.png",
+    "url": "https://incogni.com/",
+    "deal": "58% off your first year",
+    "category": "Data removal",
+    "lifetime": false,
+    "code": "BFCM26"
+  },
+  {
+    "title": "Optery",
+    "description": "A service for finding and removing personal details from data-broker sites.",
+    "icon": "/images/deals/optery.png",
+    "url": "https://www.optery.com/pricing/",
+    "deal": "20% off",
+    "category": "Data removal",
+    "lifetime": false,
+    "code": "THANKS2026"
+  },
+  {
+    "title": "Paperweight",
+    "description": "A local-first app for email cleanup and personal data removal.",
+    "deal": "Lifetime Pro for $149",
+    "icon": "/images/deals/paperweight.png",
+    "category": "Data removal",
+    "lifetime": true,
+    "url": "https://www.paperweight.email/black-friday",
+    "code": null
+  },
+  {
+    "title": "Redact",
+    "description": "An app for deleting old posts, messages and other online content.",
+    "icon": "/images/deals/redact.png",
+    "url": "https://redact.dev/",
+    "deal": "30% off annual plans",
+    "category": "Data removal",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "addy.io",
+    "description": "Email aliases that forward messages to your existing inbox.",
+    "icon": "/images/deals/addy-io.png",
+    "url": "https://addy.io/",
+    "deal": "40% off your first year",
+    "category": "Email",
+    "lifetime": false,
+    "code": "BLACKFRIDAY26"
+  },
+  {
+    "title": "AdGuard Mail",
+    "description": "Email aliases and disposable addresses for online sign-ups.",
+    "deal": "53% off annual plans",
+    "icon": "/images/deals/adguard.png",
+    "category": "Email",
+    "lifetime": false,
+    "url": "https://adguard-mail.com/en/license.html",
+    "code": null
+  },
+  {
+    "title": "Proton Mail",
+    "description": "Encrypted email with calendar and custom-domain support.",
+    "icon": "/images/deals/proton.png",
+    "url": "https://proton.me/mail/black-friday",
+    "deal": "50% off your first year",
+    "category": "Email",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "StartMail",
+    "description": "An email service with custom domains and disposable email aliases.",
+    "icon": "/images/deals/startmail.png",
+    "url": "https://www.startmail.com/pricing",
+    "deal": "50% off your first year",
+    "category": "Email",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Tuta",
+    "description": "Encrypted email, contacts and calendars.",
+    "icon": "/images/deals/tuta.png",
+    "url": "https://tuta.com/black-friday",
+    "deal": "12 months extra",
+    "category": "Email",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "BusKill",
+    "description": "A USB laptop kill cord that can trigger a lock when disconnected.",
+    "icon": "/images/deals/buskill.png",
+    "url": "https://www.buskill.in/bitcoin-black-friday-2026/",
+    "deal": "10% off with cryptocurrency",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Ledger",
+    "description": "Hardware wallets for managing cryptocurrency keys.",
+    "icon": "/images/deals/ledger.png",
+    "url": "https://shop.ledger.com/pages/black-friday",
+    "deal": "Up to $80 in BTC rewards",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Mission Darkness",
+    "description": "Faraday bags and sleeves for blocking wireless signals to enclosed devices.",
+    "icon": "/images/deals/mission-darkness.png",
+    "url": "https://mosequipment.com/collections/blackout-sale",
+    "deal": "20% off selected products",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Murena",
+    "description": "De-Googled smartphones running the privacy-focused /e/OS operating system.",
+    "icon": "/images/deals/murena.png",
+    "url": "https://murena.com/shop/smartphones/brand-new/fairphone-gen-6-plus/",
+    "deal": "€50 off Fairphone Gen. 6+",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Nitrokey",
+    "description": "Hardware security keys and privacy-focused devices, including NitroPhone.",
+    "icon": "/images/deals/nitrokey.png",
+    "url": "https://www.nitrokey.com/news/2026/protect-more-pay-less-10-everything-black-friday",
+    "deal": "10% off storewide",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Trezor",
+    "description": "Hardware wallets for holding cryptocurrency keys offline.",
+    "icon": "/images/deals/trezor.png",
+    "url": "https://trezor.io/holiday-deals",
+    "deal": "Up to 40% off",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "YubiKey",
+    "description": "Hardware security keys for protecting online accounts.",
+    "icon": "/images/deals/yubikey.png",
+    "url": "https://www.yubico.com/store/2026/black-friday-sale/",
+    "deal": "15% off selected security keys",
+    "category": "Hardware",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "1Password",
+    "description": "A password manager for individuals and families.",
+    "icon": "/images/deals/1password.png",
+    "url": "https://1password.com/promo/individual-family/holiday-sale",
+    "deal": "25% off your first year",
+    "category": "Passwords",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Dashlane",
+    "description": "A password manager with autofill and account-security alerts.",
+    "icon": "/images/deals/dashlane.png",
+    "url": "https://www.dashlane.com/pricing-personal",
+    "deal": "60% off annual plans for new customers",
+    "category": "Passwords",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Proton Pass",
+    "description": "A password manager with email aliases and cross-device autofill.",
+    "icon": "/images/deals/proton.png",
+    "url": "https://proton.me/pass/black-friday",
+    "deal": "60% off your first year",
+    "category": "Passwords",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Filen",
+    "description": "End-to-end encrypted cloud storage.",
+    "icon": "/images/deals/filen.png",
+    "url": "https://filen.io/hub/the-black-friday-sale-2026-is-live/",
+    "deal": "50% off your first year",
+    "category": "Storage",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Internxt",
+    "description": "Encrypted cloud storage and file sharing.",
+    "deal": "85% off all plans",
+    "icon": "/images/deals/internxt.png",
+    "category": "Storage",
+    "lifetime": true,
+    "url": "https://internxt.com/black-friday",
+    "code": null
+  },
+  {
+    "title": "MEGA",
+    "description": "Encrypted cloud storage, file sharing and backups.",
+    "icon": "/images/deals/mega.png",
+    "url": "https://mega.io/pricing",
+    "deal": "40% off selected Pro plans",
+    "category": "Storage",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "pCloud",
+    "description": "Cloud storage with an optional encrypted folder and password manager.",
+    "icon": "/images/deals/pcloud.png",
+    "url": "https://landing.pcloud.com/black-friday",
+    "deal": "62% off the lifetime bundle",
+    "category": "Storage",
+    "lifetime": true,
+    "code": null
+  },
+  {
+    "title": "Proton Drive",
+    "description": "Encrypted cloud storage with file sharing and online documents.",
+    "icon": "/images/deals/proton.png",
+    "url": "https://proton.me/drive/black-friday",
+    "deal": "50% off your first year",
+    "category": "Storage",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Sync.com",
+    "description": "Encrypted cloud storage for backing up and sharing files.",
+    "icon": "/images/deals/sync-com.png",
+    "url": "https://www.sync.com/pricing-individual/",
+    "deal": "24 months extra",
+    "category": "Storage",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Tresorit",
+    "description": "Encrypted cloud storage and file sharing.",
+    "icon": null,
+    "url": "https://tresorit.com/tresorit-securecloud-for-individual",
+    "deal": "Up to 60% off",
+    "category": "Storage",
+    "lifetime": false,
+    "code": "CYBERSALE2026"
+  },
+  {
+    "title": "AdGuard Ad Blocker",
+    "description": "An app that blocks ads and trackers in browsers and apps.",
+    "icon": "/images/deals/adguard.png",
+    "url": "https://adguard.com/license.html?promoCode=BF26",
+    "deal": "Up to 50% off",
+    "category": "VPN & network",
+    "lifetime": true,
+    "code": null
+  },
+  {
+    "title": "AdGuard DNS",
+    "description": "DNS filtering for blocking ads and trackers across devices.",
+    "icon": "/images/deals/adguard.png",
+    "url": "https://adguard-dns.io/license.html?promoCode=BFDNS26",
+    "deal": "Up to 65% off",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "AdGuard VPN",
+    "description": "A VPN for encrypting network traffic and changing your IP address.",
+    "icon": "/images/deals/adguard.png",
+    "url": "https://adguard-vpn.com/license.html?promoCode=BFVPN26",
+    "deal": "83% off two-year plans",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Deeper Connect Air",
+    "description": "A portable network device for decentralized VPN connections and filtering.",
+    "icon": "/images/deals/deeper-connect-air.png",
+    "url": "https://shop.deeper.network/pages/black-friday-air",
+    "deal": "$100 off",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": "QMDXY"
+  },
+  {
+    "title": "Little Snitch",
+    "description": "A Mac firewall for viewing and controlling outgoing connections.",
+    "icon": "/images/deals/little-snitch.png",
+    "url": "https://www.obdev.at/products/littlesnitch/order.html",
+    "deal": "30% off",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Obscura",
+    "description": "A VPN that separates account information from browsing traffic.",
+    "icon": null,
+    "url": "https://obscura.com/black-friday/",
+    "deal": "25% off",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Proton VPN",
+    "description": "A VPN with desktop, mobile and browser apps.",
+    "icon": "/images/deals/proton-vpn.png",
+    "url": "https://protonvpn.com/black-friday",
+    "deal": "70% off your first year",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Surfshark",
+    "description": "A VPN with optional security and data-removal bundles.",
+    "icon": "/images/deals/surfshark.png",
+    "url": "https://surfshark.com/pricing",
+    "deal": "3 months extra",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  },
+  {
+    "title": "Windscribe",
+    "description": "A VPN with apps for desktop, mobile and browsers.",
+    "icon": null,
+    "url": "https://windscribe.com/upgrade?promo=BEEPBOOP&cpid=bfcm26_hp&pcpid=bfcm26_hp&_lang=eng",
+    "deal": "58% off annual plans",
+    "category": "VPN & network",
+    "lifetime": false,
+    "code": null
+  }
+]
